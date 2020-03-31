@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+    <script src="../dest/htmlts.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+<script>
+    (function () {
+        htmlts.createById("root").append(
+            htmlts.create("h1", "hello, world!")
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "How to Use?"),
+                    htmlts.create("sectoin", {
+                        content: [
+                            htmlts.create("p", "あいうえお。"),
+                            htmlts.create("code", "htmlts.createById('some_id');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "attr"),
+                    htmlts.create("sectoin", {
+                       content: [
+                            htmlts.create("span", {
+                                attr: {
+                                    "title": "タイトル属性です"
+                                },
+                                content: "タイトル属性がついてます"
+                            }),
+                            htmlts.create("code", "htmlts.createById('some_id');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "How to Use?"),
+                    htmlts.create("sectoin", {
+                        content: [
+                            htmlts.create("p", "あいうえお。"),
+                            htmlts.create("code", "htmlts.createById('some_id');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                        ]
+                    })
+                ]
+            })
+        );
+    })();
+</script>
