@@ -1,8 +1,11 @@
 import HtmlTs from "./HtmlTs";
 import {TagNameTypes, HtmlTsOptionType, HtmlTsOptions, HtmlTsContentType} from "./HtmlTsTypes";
+import HtmlTsUtil from "./HtmlTsUtil";
 
 
 class HtmlTsFactory {
+
+    util = HtmlTsUtil;
 
     createById(id: string, options?: HtmlTsOptionType): HtmlTs {
         const htmlTs = new HtmlTs(document.getElementById(id));

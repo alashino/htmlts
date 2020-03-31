@@ -1,4 +1,5 @@
 import {TagNameTypes} from "./HtmlTsTypes";
+import HtmlTsUtil from "./HtmlTsUtil";
 
 class HtmlTs {
 
@@ -53,19 +54,46 @@ class HtmlTs {
     }
 
     addClass(className: string): HtmlTs {
-        const currentClassStr: string = this.htmlElement.getAttribute("class");
-        if (currentClassStr === undefined) {
-            this.setAttribute("class", className);
-        } else {
-            const currentClasses: string[] = currentClassStr.split(" ");
-            const results: string[] = [className];
-            for (const currentClassName of currentClasses) {
-                if (currentClassName === "") continue;
-                results.push(currentClassName);
-            }
-            this.setAttribute("class", results.join(" "));
+        const currentClassNames: string[] = this.getCurrentClassNames();
+        const addClassNames: string[] = this.splitClassNames(className);
+        for (const addClassName of addClassNames) {
+            if (HtmlTsUtil.array.in(addClassName, currentClassNames)) continue;
+            currentClassNames.push(addClassName);
         }
+        this.setAttribute("class", currentClassNames.join(" "));
         return this;
+    }
+
+    removeClass(className: string): HtmlTs {
+        const results: string[] = [];
+        const currentClassNames: string[] = this.getCurrentClassNames();
+        const removeClassNames: string[] = this.splitClassNames(className);
+        for (const currentClassName of currentClassNames) {
+            if (HtmlTsUtil.array.in(currentClassName, removeClassNames)) continue;
+            results.push(currentClassName);
+        }
+        this.setAttribute("class", results.join(" "));
+        return this;
+    }
+
+    private getCurrentClassNames(): string[] {
+        const currentClassStr: string = this.htmlElement.getAttribute("class");
+        if (currentClassStr === undefined || currentClassStr === null) {
+            return [];
+        } else {
+            return this.splitClassNames(currentClassStr);
+        }
+    }
+
+    private splitClassNames(classNamesString: string): string[] {
+        const results: string[] = [];
+        const currentClasses: string[] = classNamesString.split(" ");
+        for (const currentClassName of currentClasses) {
+            if (currentClassName === "") continue; // 連続する空スペースを排除
+            if (HtmlTsUtil.array.in(currentClassName, results)) continue; // ダブっているものを排除
+            results.push(currentClassName);
+        }
+        return results;
     }
 
     setCss(key: string, value: string): void {
