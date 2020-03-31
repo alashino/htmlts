@@ -53,14 +53,36 @@
                     htmlts.create("sectoin", {
                         content: [
                             htmlts.create("p", {
-                                class: "hoge  moge"
-                            }).addClass("hoge fuga fish cat dog").removeClass("fuga fish"),
-                            htmlts.create("code", "htmlts.createById('some_id');"),
-                            htmlts.create("p", "または"),
-                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                                class: "hoge  moge",
+                                content: "classを足したり引いたり。"
+                            }).addClass("hoge fuga fish cat dog").removeClass("fuga fish")
                         ]
                     })
                 ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "click"),
+                    htmlts.create("sectoin", {
+                        content: [
+                            htmlts.create("a", {
+                                attr: {
+                                    "href": "javascript:void(0)"
+                                },
+                                content: "click me",
+                                click: (element) => {
+                                    console.log("aがclickされたよ！");
+                                    console.log(element);
+                                }
+                            })
+                        ]
+                    }).click()
+                ],
+                click: (element) => {
+                    console.log("sectionがclickされたよ！");
+                    console.log(element);
+                }
             })
         );
     })();

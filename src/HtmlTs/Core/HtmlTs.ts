@@ -49,9 +49,12 @@ class HtmlTs {
 
     setText(text: string | number): void {
         const textNode = document.createTextNode(text.toString());
-        console.log(textNode);
         this.htmlElement.appendChild(textNode);
     }
+
+    //
+    // class系
+    //
 
     addClass(className: string): HtmlTs {
         const currentClassNames: string[] = this.getCurrentClassNames();
@@ -62,6 +65,17 @@ class HtmlTs {
         }
         this.setAttribute("class", currentClassNames.join(" "));
         return this;
+    }
+
+    hasClass(className: string): boolean {
+        const currentClassNames: string[] = this.getCurrentClassNames();
+        const addClassNames: string[] = this.splitClassNames(className);
+        for (const addClassName of addClassNames) {
+            if (HtmlTsUtil.array.in(addClassName, currentClassNames)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     removeClass(className: string): HtmlTs {
@@ -96,9 +110,17 @@ class HtmlTs {
         return results;
     }
 
+    //
+    // CSS系
+    //
+
     setCss(key: string, value: string): void {
 
     }
+
+    //
+    // Attribute系
+    //
 
     setAttribute(key: string, value?: string): void {
         if (value === undefined || value === "") {
@@ -116,6 +138,29 @@ class HtmlTs {
         this.htmlElement.removeAttribute(key);
     }
 
+    //
+    // イベント系
+    //
+
+    click(func?: (html?: Element) => void): HtmlTs {
+        if (typeof func !== "function") {
+            // clickイベントを起こす
+            const event = document.createEvent("MouseEvent");
+            event.initEvent("click", false, true);
+            this.htmlElement.dispatchEvent(event);
+        } else {
+            // eventListenerに追加
+            this.htmlElement.addEventListener('click', event => {
+                event.stopPropagation(); // bubblingの停止。
+                func(this.htmlElement);
+            });
+        }
+        return this;
+    }
+
+    //
+    // その他
+    //
     getTagName(): string {
         return this.htmlElement.tagName;
     }

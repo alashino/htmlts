@@ -24,4 +24,5 @@ export type HtmlTsOptions = {
     css?: { [key: string]: string };
     attr?: { [key: string]: string };
     content?: HtmlTsContentType;
+    click?: (html?: Element) => void;
 };

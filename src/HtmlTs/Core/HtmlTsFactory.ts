@@ -15,8 +15,13 @@ class HtmlTsFactory {
         return htmlTs;
     }
 
-    create(tagName: TagNameTypes, options?: HtmlTsOptionType): HtmlTs {
-        const htmlTs = new HtmlTs(document.createElement(tagName));
+    create(tagName: Element | TagNameTypes, options?: HtmlTsOptionType): HtmlTs {
+        let htmlTs: HtmlTs;
+        if (tagName instanceof Element) {
+            htmlTs = new HtmlTs(tagName);
+        } else {
+            htmlTs = new HtmlTs(document.createElement(tagName));
+        }
         if (options !== undefined) {
             this.modify(htmlTs, options);
         }
@@ -39,6 +44,7 @@ class HtmlTsFactory {
             if (options.attr !== undefined) this.setAttr(htmlTs, options.attr);
             if (options.css !== undefined) this.setCss(htmlTs, options.css);
             if (options.content !== undefined) this.setContents(htmlTs, options.content);
+            if (options.click !== undefined) htmlTs.click(options.click);
         }
     }
 
