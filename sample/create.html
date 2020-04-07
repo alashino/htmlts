@@ -38,7 +38,31 @@
                                     "title": "タイトル属性です"
                                 },
                                 content: "タイトル属性がついてます"
-                            }),
+                            }).attr("test", "hoge"),
+                            htmlts.create("p", "設定する時"),
+                            htmlts.create("code", "htmlts.attr('some_key', 'some value');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.attr({'some_key', 'some value'});"),
+                            htmlts.create("p", "取得する時はjQueryと違うので注意してください。"),
+                            htmlts.create("code", "htmlts.getAttr('some_key');"),
+                            htmlts.create("p", "これは返り値の型を一意にするためです。"),
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "css"),
+                    htmlts.create("sectoin", {
+                       content: [
+                            htmlts.create("span", {
+                                css: {
+                                    "  border  ": " solid 1px red ",
+                                    " font-weight ": "  bold",
+                                },
+                                content: "タイトル属性がついてます"
+                            }).css("padding", "1rem").css("font-weight", 100),
                             htmlts.create("code", "htmlts.createById('some_id');"),
                             htmlts.create("p", "または"),
                             htmlts.create("code", "htmlts.create('${TagName}', options?);")
@@ -84,6 +108,8 @@
                     console.log(element);
                 }
             })
+        ).prepend(
+
         );
     })();
 </script>

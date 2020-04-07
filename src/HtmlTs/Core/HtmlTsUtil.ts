@@ -1,3 +1,18 @@
+class UtilString {
+
+    strip(str: string, separator: string = " "): string {
+        return this.lstrip(this.rstrip(str, separator), separator);
+    }
+
+    lstrip(str: string, separator: string = " "): string {
+        return str.replace(RegExp(`^[${separator}]+`), "");
+    }
+
+    rstrip(str: string, separator: string = " "): string {
+        return str.replace(RegExp(`[${separator}]+$`), "");
+    }
+}
+
 class UtilArray {
 
     //
@@ -25,6 +40,7 @@ class UtilArray {
 
 const HtmlTsUtil = {
     array: new UtilArray(),
+    string: new UtilString(),
 };
 
 export default HtmlTsUtil;

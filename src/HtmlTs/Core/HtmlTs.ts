@@ -12,6 +12,9 @@ class HtmlTs {
         this.htmlElement = element;
     }
 
+    //
+    // 要素の追加、削除
+    //
     empty(): void {
         if (!this.htmlElement.hasChildNodes()) return;
         for (const childNode of this.htmlElement.childNodes) {
@@ -27,6 +30,18 @@ class HtmlTs {
         } else {
             this.children.push(htmlts);
             this.htmlElement.appendChild(htmlts.htmlElement);
+        }
+        return this;
+    }
+
+    prepend(htmlTs: HtmlTs | HtmlTs[]): HtmlTs {
+        if (htmlTs instanceof Array) {
+            htmlTs.reverse().forEach((element) => {
+                this.prepend(element);
+            });
+        } else {
+            this.children.unshift(htmlTs);
+            this.htmlElement.prepend(htmlTs.htmlElement);
         }
         return this;
     }
@@ -47,9 +62,13 @@ class HtmlTs {
         }
     }
 
-    setText(text: string | number): void {
+    //
+    // text
+    //
+    text(text: string | number): HtmlTs {
         const textNode = document.createTextNode(text.toString());
         this.htmlElement.appendChild(textNode);
+        return this;
     }
 
     //
@@ -114,27 +133,74 @@ class HtmlTs {
     // CSS系
     //
 
-    setCss(key: string, value: string): void {
+    css(args1: { [key: string]: string | number } | string, args2?: string | number): HtmlTs {
+        if (typeof args1 === "string") {
+            this.setCss(args1, args2);
+        } else {
+            for (const key in args1) {
+                if (!args1.hasOwnProperty(key)) continue;
+                this.setCss(key, args1[key]);
+            }
+        }
+        return this;
+    }
 
+    private setCss(key: string, value?: string | number): void {
+        const css: { [key: string]: string } = this.getCurrentCss();
+        css[key] = (value === undefined) ? "" : `${value}`;
+        let styleString = "";
+        for (const key in css) {
+            if (!css.hasOwnProperty(key)) continue;
+            const cssValue = css[key];
+            if (cssValue === "") continue;
+            styleString += `${key}:${cssValue};`;
+        }
+        this.setAttribute("style", styleString);
+    }
+
+    private getCurrentCss(): { [key: string]: string } {
+        const results: { [key: string]: string } = {};
+        const currentStyleString = this.htmlElement.getAttribute("style");
+        if (currentStyleString === null || currentStyleString === undefined) return results;
+        currentStyleString.split(";").forEach((str) => {
+            const split = str.split(":");
+            if (split.length !== 2) return;
+            const key = HtmlTsUtil.string.strip(split[0]);
+            const value = HtmlTsUtil.string.strip(split[1]);
+            results[key] = value;
+        });
+        return results;
     }
 
     //
     // Attribute系
     //
 
-    setAttribute(key: string, value?: string): void {
+    attr(args1: {[key: string]: string | number} | string, args2?: string | number): HtmlTs {
+        if (typeof args1 === "string") {
+            this.setAttribute(args1, args2);
+        } else {
+            for (const key in args1) {
+                if (!args1.hasOwnProperty(key)) continue;
+                this.setAttribute(key, args1[key]);
+            }
+        }
+        return this;
+    }
+
+    private setAttribute(key: string, value?: string | number): void {
         if (value === undefined || value === "") {
             this.htmlElement.removeAttribute(key);
         } else {
-            this.htmlElement.setAttribute(key, value);
+            this.htmlElement.setAttribute(key, `${value}`);
         }
     }
 
-    getAttribute(key: string): string {
+    getAttr(key: string): string {
         return this.htmlElement.getAttribute(key);
     }
 
-    removeAttribute(key: string): void {
+    removeAttr(key: string): void {
         this.htmlElement.removeAttribute(key);
     }
 

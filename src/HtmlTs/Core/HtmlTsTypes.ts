@@ -21,8 +21,8 @@ export type HtmlTsContentType = string | number | HtmlTs | Array<string | number
 
 export type HtmlTsOptions = {
     class?: string;
-    css?: { [key: string]: string };
-    attr?: { [key: string]: string };
+    css?: { [key: string]: string | number };
+    attr?: { [key: string]: string | number };
     content?: HtmlTsContentType;
     click?: (html?: Element) => void;
 };

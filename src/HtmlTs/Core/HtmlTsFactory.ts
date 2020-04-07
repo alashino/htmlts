@@ -41,30 +41,16 @@ class HtmlTsFactory {
         } else {
             // HtmlTsOptions の時
             if (options.class !== undefined) htmlTs.addClass(options.class);
-            if (options.attr !== undefined) this.setAttr(htmlTs, options.attr);
-            if (options.css !== undefined) this.setCss(htmlTs, options.css);
+            if (options.attr !== undefined) htmlTs.attr(options.attr);
+            if (options.css !== undefined) htmlTs.css(options.css);
             if (options.content !== undefined) this.setContents(htmlTs, options.content);
             if (options.click !== undefined) htmlTs.click(options.click);
         }
     }
 
-    private setAttr(htmlTs: HtmlTs, attr: { [key: string]: string }): void {
-        for (const key in attr) {
-            const value = attr[key];
-            htmlTs.setAttribute(key, value);
-        }
-    }
-
-    private setCss(htmlTs: HtmlTs, css: { [key: string]: string }): void {
-        for (const key in css) {
-            const value = css[key];
-            htmlTs.setAttribute(key, value);
-        }
-    }
-
     private setContents(htmlTs: HtmlTs, content: HtmlTsContentType): void {
         if (typeof content === "string" || typeof content === "number") {
-            htmlTs.setText(content);
+            htmlTs.text(content);
         } else if (content instanceof HtmlTs) {
             htmlTs.append(content);
         } else if (content instanceof Array) {
