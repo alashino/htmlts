@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+    <script src="../dest/htmlts.js"></script>
+</head>
+<body>
+<div id="table"></div>
+<div id="tableVertical"></div>
+</body>
+</html>
+<script>
+    (function () {
+        htmlts.createById("table").append(
+            htmlts.table.create({
+                thead: [
+                    "ABC",
+                    123,
+                    htmlts.create("p", "あいうえお")
+                ],
+                tbody: [
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                ],
+                tfoot: [
+                    "ABC",
+                    123,
+                    htmlts.create("p", "あいうえお")
+                ],
+                caption: "テーブルです"
+            })
+        );
+    })();
+    (function () {
+        htmlts.createById("table").append(
+            htmlts.table.createVertical({
+                tbody: [
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                    [
+                        "ABC",
+                        123,
+                        htmlts.create("p", "あいうえお")
+                    ],
+                ],
+                caption: "縦のテーブルです"
+            })
+        );
+    })();
+</script>
