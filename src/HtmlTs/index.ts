@@ -1,5 +1,5 @@
-import htmlts from "./HtmlTs/build";
-import HtmlTsFactory from "./HtmlTs/Core/HtmlTsFactory";
+import htmlts from "./build";
+import HtmlTsFactory from "./Core/HtmlTsFactory";
 
 declare global {
     interface Window {

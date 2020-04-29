@@ -8,13 +8,15 @@ export type TagNameHeader = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 export type TagNameInlineTypes = "a" | "span" | "i" | "b";
 export type TagNameTable = "table" | "tbody" | "thead" | "tfoot" | "caption" | "tr" | "th" | "td";
 export type TagNameCanvas = "canvas";
+export type TagNameButton = "button";
 export type TagNameTypes = TagNameBlockTypes |
     TagNameListTypes |
     TagNameInputTypes |
     TagNameHeader |
     TagNameInlineTypes |
     TagNameTable |
-    TagNameCanvas;
+    TagNameCanvas |
+    TagNameButton;
 
 export type HtmlTsOptionType = string | number | HtmlTsOptions | HtmlTs | Array<string | number | HtmlTs>;
 export type HtmlTsContentType = string | number | HtmlTs | Array<string | number | HtmlTs>;

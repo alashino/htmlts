@@ -15,26 +15,29 @@ class HtmlTs {
     //
     // 要素の追加、削除
     //
-    empty(): void {
-        if (!this.htmlElement.hasChildNodes()) return;
+    empty(): HtmlTs {
+        if (!this.htmlElement.hasChildNodes()) return this;
         for (const childNode of this.htmlElement.childNodes) {
             this.htmlElement.removeChild(childNode);
         }
+        return this;
     }
 
-    append(htmlts: HtmlTs | HtmlTs[]): HtmlTs {
-        if (htmlts instanceof Array) {
-            htmlts.forEach((h) => {
+    append(htmlTs: HtmlTs | HtmlTs[]): HtmlTs {
+        if (htmlTs === undefined) return this;
+        if (htmlTs instanceof Array) {
+            htmlTs.forEach((h) => {
                 this.append(h);
             });
         } else {
-            this.children.push(htmlts);
-            this.htmlElement.appendChild(htmlts.htmlElement);
+            this.children.push(htmlTs);
+            this.htmlElement.appendChild(htmlTs.htmlElement);
         }
         return this;
     }
 
     prepend(htmlTs: HtmlTs | HtmlTs[]): HtmlTs {
+        if (htmlTs === undefined) return this;
         if (htmlTs instanceof Array) {
             htmlTs.reverse().forEach((element) => {
                 this.prepend(element);

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HtmlTs:Bootstrap4 Table</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="../../dest/htmlts.js"></script>
+    <script src="../../dest/htmltsBootstrap4.js"></script>
+</head>
+<body>
+<h1>HtmlTs:Bootstrap4 Table</h1>
+<p>
+    please check this html source code!
+</p>
+<p>
+    使い方はコードをみてください！
+</p>
+
+<hr/>
+
+<div id="default">
+    <h2>Default</h2>
+</div>
+
+<hr/>
+
+<div id="nodata">
+    <h2>No Data</h2>
+    <p>もしデータがない時はNoDataの表示がでます</p>
+</div>
+
+<hr/>
+
+<div id="variation">
+    <h2>Variation</h2>
+    <p>decoratorを変更することでスタイルを変えることができます。</p>
+    <p>デフォルトのスタイルを変更する場合は下記のコードを実行してください。</p>
+    <code>
+        // デフォルトのスタイルをBorderedに変更する場合<br/>
+        htmlts.table.setDecorator(htmltsBootstrap4.table.tableBordered);
+    </code>
+</div>
+
+</body>
+</html>
+<script>
+
+    (function () {
+        htmlts.createById("default").append(
+            htmlts.table.create({
+                thead: ["header", "of", "table", "sample", ""],
+                tbody: [
+                    ["#1", 123, "わがはいは", "", ""],
+                    ["#2", 456, "ねこである", "", ""],
+                    ["#3", 789, "名前はないよ", "", ""],
+                ],
+                tfoot: ["footer", "of", "table", "sample", ""],
+                caption: "caption of table."
+            })
+        );
+    })();
+
+    (function () {
+        htmlts.createById("nodata").append(
+            htmlts.table.create({
+                thead: ["header", "of", "table", "sample", ""]
+            })
+        ).append(
+            htmlts.create("p", "データがない時の表示内容を変更することもできます。")
+        ).append(
+            htmlts.table.create({
+                thead: ["override", "nodata", "text"],
+                noData: "データがありません。"
+            })
+        ).append(
+            htmlts.create("p", "デフォルトの文言を変更したい場合は下記のコードで変更できます")
+        ).append(
+            htmlts.create("code", "htmlts.table.setNoDataText(\"変更したい文字列\");")
+        );
+
+    })();
+
+    (function () {
+        htmlts.createById("variation").append(
+            htmlts.table.create({
+                thead: ["header", "of", "table", "bordered"],
+                tbody: [
+                    ["#1", "aaa", "bbb", "ccc"],
+                    ["#2", "AAA", "BBB", "CCC"]
+                ]
+            }, htmltsBootstrap4.table.tableBordered)
+        ).append(
+            htmlts.table.create({
+                thead: ["header", "of", "table", "dark"],
+                tbody: [
+                    ["#1", "aaa", "bbb", "ccc"],
+                    ["#2", "AAA", "BBB", "CCC"]
+                ]
+            }, htmltsBootstrap4.table.tableDark)
+        ).append(
+            htmlts.table.create({
+                thead: ["header", "of", "table", "striped"],
+                tbody: [
+                    ["#1", "aaa", "bbb", "ccc"],
+                    ["#2", "AAA", "BBB", "CCC"]
+                ]
+            }, htmltsBootstrap4.table.tableStriped)
+        );
+
+    })();
+
+
+</script>

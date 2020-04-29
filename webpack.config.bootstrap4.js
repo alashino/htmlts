@@ -1,9 +1,9 @@
 module.exports = {
     mode: 'development',
-    entry: __dirname + '/src/HtmlTs/index.ts', //ファイルをまとめる際のエントリーポイント
+    entry: __dirname + '/src/Bootstrap4/index.ts', //ファイルをまとめる際のエントリーポイント
     output: {
         path: __dirname + "/dest",
-        filename: 'htmlts.js' //まとめた結果出力されるファイル名
+        filename: 'htmltsBootstrap4.js' //まとめた結果出力されるファイル名
     },
     resolve: {
         extensions: ['.ts', '.js'] //拡張子がtsだったらTypescirptでコンパイルする

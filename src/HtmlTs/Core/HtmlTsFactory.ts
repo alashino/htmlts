@@ -2,12 +2,14 @@ import HtmlTs from "./HtmlTs";
 import {TagNameTypes, HtmlTsOptionType, HtmlTsOptions, HtmlTsContentType} from "./HtmlTsTypes";
 import HtmlTsUtil from "./HtmlTsUtil";
 import HtmlTsTableFactory from "../Table/HtmlTsTableFactory";
+import HtmlTsButtonFactory from "../Button/HtmlTsButtonFactory";
 
 
 class HtmlTsFactory {
 
     util = HtmlTsUtil;
     table = new HtmlTsTableFactory();
+    button = new HtmlTsButtonFactory();
 
     createById(id: string, options?: HtmlTsOptionType): HtmlTs {
         const htmlTs = new HtmlTs(document.getElementById(id));
