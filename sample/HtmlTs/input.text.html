@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>input:text</title>
+    <script src="../../dest/htmlts.js"></script>
+</head>
+<body>
+<h1>input:text</h1>
+<div>
+    <p>
+        <a href="javascript:void(0)" onclick="console.log(inputController.getValues())">log values</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="console.log(inputController.validate())">log validate</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="rotateState();">change state</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="inputController.reset();">reset Value</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="inputController.clear();">clear Value</a>
+    </p>
+</div>
+<div id="root"></div>
+</body>
+</html>
+<script>
+    const inputController = htmlts.input.controller();
+
+    (function () {
+        const input_enable = htmlts.input.text({
+            name: "input_enable",
+            value: "input_enable_value",
+            placeHolder: "text input"
+        });
+        inputController.subscribe(input_enable);
+        htmlts.createById("root").append(input_enable.html);
+    })();
+
+    (function () {
+        const input_readonly = htmlts.input.text({
+            name: "input_readonly",
+            value: "input_readonly_value",
+            state: "readonly",
+            placeHolder: "readonly text input"
+        });
+        inputController.subscribe(input_readonly);
+        htmlts.createById("root").append(input_readonly.html);
+    })();
+
+    (function () {
+        const input_disable = htmlts.input.text({
+            name: "input_disable",
+            value: "input_disable_value",
+            state: "disabled",
+            placeHolder: "disabled text input"
+        });
+        inputController.subscribe(input_disable);
+        htmlts.createById("root").append(input_disable.html);
+    })();
+
+    function rotateState() {
+        inputController.getInputs("input_enable").forEach((input) => {
+            input.rotateState();
+        });
+    }
+
+</script>

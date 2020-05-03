@@ -15,7 +15,7 @@ class HtmlTsButtonFactory {
     create(params: HtmlTsButtonParams, decorator: InterfaceHtmlTsButtonDecorator = undefined): HtmlTs {
         const button = htmlts.create("button", params);
         // 必ずtype属性はbuttonにする
-        button.attr("type", "button");
+        button.setAttr("type", "button");
         if (decorator !== undefined) {
             decorator.decorate(button, params.type, params.size);
         } else if (this.defaultDecorator !== undefined) {

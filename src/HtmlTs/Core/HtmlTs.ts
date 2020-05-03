@@ -1,12 +1,12 @@
-import {TagNameTypes} from "./HtmlTsTypes";
 import HtmlTsUtil from "./HtmlTsUtil";
+import {HtmlTsEventFunctionTypes, HtmlTsEventTypes} from "./HtmlTsTypes";
 
 class HtmlTs {
 
-    private htmlElement: Element;
-
     parent: HtmlTs;
     children: HtmlTs[] = [];
+
+    htmlElement: Element;
 
     constructor(element: Element) {
         this.htmlElement = element;
@@ -68,10 +68,25 @@ class HtmlTs {
     //
     // text
     //
+    /**
+     * @deprecated setText
+     */
     text(text: string | number): HtmlTs {
-        const textNode = document.createTextNode(text.toString());
-        this.htmlElement.appendChild(textNode);
+        return this.setText(text);
+    }
+
+    setText(text: string | number): HtmlTs {
+        this.htmlElement.textContent = `${text}`;
         return this;
+    }
+
+    getText(): string {
+        const text = this.htmlElement.textContent;
+        if (text === null) {
+            return "";
+        } else {
+            return text;
+        }
     }
 
     //
@@ -179,7 +194,7 @@ class HtmlTs {
     // Attribute系
     //
 
-    attr(args1: {[key: string]: string | number} | string, args2?: string | number): HtmlTs {
+    setAttr(args1: { [key: string]: string | number } | string, args2?: string | number): HtmlTs {
         if (typeof args1 === "string") {
             this.setAttribute(args1, args2);
         } else {
@@ -203,15 +218,31 @@ class HtmlTs {
         return this.htmlElement.getAttribute(key);
     }
 
-    removeAttr(key: string): void {
-        this.htmlElement.removeAttribute(key);
+    removeAttr(key: string | string[]): HtmlTs {
+        if (key instanceof Array) {
+            key.forEach((k) => {
+                this.htmlElement.removeAttribute(k);
+            });
+        } else {
+            this.htmlElement.removeAttribute(key);
+        }
+        return this;
     }
 
     //
     // イベント系
     //
 
-    click(func?: (html?: Element) => void): HtmlTs {
+
+    on(eventName: string | HtmlTsEventTypes, func: HtmlTsEventFunctionTypes): HtmlTs {
+        this.htmlElement.addEventListener(eventName, event => {
+            event.stopPropagation(); // bubblingの停止。
+            func(this.htmlElement);
+        });
+        return this;
+    }
+
+    click(func?: HtmlTsEventFunctionTypes): HtmlTs {
         if (typeof func !== "function") {
             // clickイベントを起こす
             const event = document.createEvent("MouseEvent");
@@ -219,10 +250,20 @@ class HtmlTs {
             this.htmlElement.dispatchEvent(event);
         } else {
             // eventListenerに追加
-            this.htmlElement.addEventListener('click', event => {
-                event.stopPropagation(); // bubblingの停止。
-                func(this.htmlElement);
-            });
+            this.on("click", func);
+        }
+        return this;
+    }
+
+    change(func?: HtmlTsEventFunctionTypes): HtmlTs {
+        if (typeof func !== "function") {
+            // clickイベントを起こす
+            const event = document.createEvent("MouseEvent");
+            event.initEvent("change", false, true);
+            this.htmlElement.dispatchEvent(event);
+        } else {
+            // eventListenerに追加
+            this.on("change", func);
         }
         return this;
     }
@@ -233,6 +274,7 @@ class HtmlTs {
     getTagName(): string {
         return this.htmlElement.tagName;
     }
+
 }
 
 export default HtmlTs;

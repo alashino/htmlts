@@ -3,6 +3,7 @@ import {TagNameTypes, HtmlTsOptionType, HtmlTsOptions, HtmlTsContentType} from "
 import HtmlTsUtil from "./HtmlTsUtil";
 import HtmlTsTableFactory from "../Table/HtmlTsTableFactory";
 import HtmlTsButtonFactory from "../Button/HtmlTsButtonFactory";
+import HtmlTsInputFactory from "../Input/HtmlTsInputFactory";
 
 
 class HtmlTsFactory {
@@ -10,6 +11,7 @@ class HtmlTsFactory {
     util = HtmlTsUtil;
     table = new HtmlTsTableFactory();
     button = new HtmlTsButtonFactory();
+    input = new HtmlTsInputFactory();
 
     createById(id: string, options?: HtmlTsOptionType): HtmlTs {
         const htmlTs = new HtmlTs(document.getElementById(id));
@@ -45,7 +47,7 @@ class HtmlTsFactory {
         } else {
             // HtmlTsOptions の時
             if (options.class !== undefined) htmlTs.addClass(options.class);
-            if (options.attr !== undefined) htmlTs.attr(options.attr);
+            if (options.attr !== undefined) htmlTs.setAttr(options.attr);
             if (options.css !== undefined) htmlTs.css(options.css);
             if (options.content !== undefined) this.setContents(htmlTs, options.content);
             if (options.click !== undefined) htmlTs.click(options.click);

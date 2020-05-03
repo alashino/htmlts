@@ -194,7 +194,7 @@ class HtmlTsTableFactory {
         } else {
             td = htmlts.create("td", this.noDataText);
         }
-        td.attr("colspan", "9999");
+        td.setAttr("colspan", "9999");
         if (tableDecorator !== undefined) {
             tableDecorator.noData(td);
         } else if (this.defaultDecorator !== undefined) {
