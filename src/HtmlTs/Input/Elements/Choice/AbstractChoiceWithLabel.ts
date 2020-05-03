@@ -1,6 +1,15 @@
 import InterfaceHtmlTsInputChoice from "./InterfaceHtmlTsInputChoice";
 import HtmlTs from "../../../Core/HtmlTs";
 import htmlts from "../../../build";
+import {HtmlTsInputStateType} from "../Core/HtmlTsInputType";
+
+export type AbstractChoiceWithLabelArgs = {
+    name: string;
+    value: string;
+    label: string;
+    title?: string;
+    state?: HtmlTsInputStateType;
+}
 
 abstract class AbstractChoiceWithLabel implements InterfaceHtmlTsInputChoice {
 
@@ -14,12 +23,14 @@ abstract class AbstractChoiceWithLabel implements InterfaceHtmlTsInputChoice {
     readonly value: string;
     readonly label: string;
     readonly title: string;
+    private state: HtmlTsInputStateType;
 
-    protected constructor(name: string, value: string, label: string, title: string = "") {
-        this.name = name;
-        this.value = value;
-        this.label = label;
-        this.title = title;
+    protected constructor(args: AbstractChoiceWithLabelArgs) {
+        this.name = args.name;
+        this.value = args.value;
+        this.label = args.label;
+        this.title = args.title;
+        this.state = args.state || "enable";
     }
 
     protected build(): void {
@@ -56,6 +67,23 @@ abstract class AbstractChoiceWithLabel implements InterfaceHtmlTsInputChoice {
     isSelected(): boolean {
         // @ts-ignore
         return this.htmlInput.htmlElement.checked;
+    }
+
+    changeState(state: HtmlTsInputStateType): void {
+        switch (state) {
+            case "enable":
+                this.htmlInput.removeAttr(["readonly", "disabled"]);
+                break;
+            case "readonly":
+                this.htmlInput.removeAttr(["disabled"]);
+                this.htmlInput.setAttr(state, "true");
+                break;
+
+            case "disabled":
+                this.htmlInput.removeAttr(["readonly"]);
+                this.htmlInput.setAttr(state, "true");
+                break;
+        }
     }
 
 }

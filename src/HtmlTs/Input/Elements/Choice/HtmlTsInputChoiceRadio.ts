@@ -1,12 +1,12 @@
-import AbstractChoiceWithLabel from "./AbstractChoiceWithLabel";
+import AbstractChoiceWithLabel, {AbstractChoiceWithLabelArgs} from "./AbstractChoiceWithLabel";
 
 
 class HtmlTsInputChoiceRadio extends AbstractChoiceWithLabel {
 
     type: "checkbox" | "radio" = "radio";
 
-    constructor(name: string, value: string, label: string, title: string = "") {
-        super(name, value, label, title);
+    constructor(args: AbstractChoiceWithLabelArgs) {
+        super(args);
         this.build();
     }
 

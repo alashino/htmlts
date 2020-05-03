@@ -1,5 +1,5 @@
 import HtmlTs from "../../../Core/HtmlTs";
-import htmlts from "../../../build";
+import {HtmlTsInputStateType} from "../Core/HtmlTsInputType";
 
 
 interface InterfaceHtmlTsInputChoice {
@@ -15,6 +15,8 @@ interface InterfaceHtmlTsInputChoice {
     set(): void;
 
     isSelected(): void;
+
+    changeState(state: HtmlTsInputStateType): void;
 
 }
 

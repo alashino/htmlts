@@ -15,7 +15,6 @@ class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOp
 
     constructor(args: HtmlTsInputSelectMultiArgs) {
         super(args);
-        console.log(this);
         this.build();
     }
 
@@ -25,7 +24,8 @@ class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOp
                 new HtmlTsInputOption(
                     choice.value,
                     choice.label,
-                    choice.title
+                    choice.title,
+                    this.state,
                 )
             );
         });

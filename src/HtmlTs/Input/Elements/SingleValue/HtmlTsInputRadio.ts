@@ -1,6 +1,6 @@
 import {
     HtmlTsInputArgsSingleValueHasChildrenType,
-    HtmlTsInputSingleType
+    HtmlTsInputSingleType, HtmlTsInputStateType
 } from "../Core/HtmlTsInputType";
 import AbstractHtmlTsInputSingleValueChoice from "../Core/AbstractHtmlTsInputSingleValueChoice";
 import HtmlTsInputChoiceRadio from "../Choice/HtmlTsInputChoiceRadio";
@@ -17,18 +17,18 @@ class HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice<HtmlTsInputC
     constructor(args: HtmlTsInputRadioArgs) {
         super(args);
         this.build();
-        console.log(this);
     }
 
     build() {
         this.choiceValues.forEach((choice) => {
             this.choice.push(
-                new HtmlTsInputChoiceRadio(
-                    this.name,
-                    choice.value,
-                    choice.label,
-                    choice.title,
-                )
+                new HtmlTsInputChoiceRadio({
+                    name: this.name,
+                    value: choice.value,
+                    label: choice.label,
+                    title: choice.title,
+                    state: this.state,
+                })
             );
         });
         this.html = htmlts.create("div", {
@@ -37,6 +37,7 @@ class HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice<HtmlTsInputC
             }),
         });
         this.set(this.init_value);
+        this.changeState(this.state);
     }
 
     value(): string {
@@ -50,6 +51,13 @@ class HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice<HtmlTsInputC
 
     validate(): boolean {
         return true;
+    }
+
+    changeState(state: HtmlTsInputStateType): void {
+        this.state = state;
+        this.choice.forEach((choice) => {
+            choice.changeState(state);
+        });
     }
 
 }

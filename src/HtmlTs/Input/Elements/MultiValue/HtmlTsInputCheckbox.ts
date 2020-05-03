@@ -21,12 +21,13 @@ class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputChoic
     protected build(): void {
         this.choiceValues.forEach((choice) => {
             this.choice.push(
-                new HtmlTsInputChoiceCheckbox(
-                    this.name,
-                    choice.value,
-                    choice.label,
-                    choice.title
-                )
+                new HtmlTsInputChoiceCheckbox({
+                    name: this.name,
+                    value: choice.value,
+                    label: choice.label,
+                    title: choice.title,
+                    state: this.state,
+                })
             );
         });
         this.input = htmlts.create("div", {
@@ -36,6 +37,7 @@ class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputChoic
         });
         this.html = this.input;
         this.set(this.init_value);
+        this.changeState(this.state);
     }
 
     set(value: string[]): void {

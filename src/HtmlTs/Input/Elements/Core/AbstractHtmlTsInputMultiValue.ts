@@ -1,7 +1,7 @@
 import HtmlTs from "../../../Core/HtmlTs";
 import {
     HtmlTsInputArgsMultiValueType, HtmlTsInputChoiceType,
-    HtmlTsInputMultiType
+    HtmlTsInputMultiType, HtmlTsInputStateType
 } from "./HtmlTsInputType";
 import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
@@ -40,6 +40,12 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
         return result;
     }
 
+    changeState(state: HtmlTsInputStateType): void {
+        this.state = state;
+        this.choice.forEach((choice) => {
+            choice.changeState(state);
+        });
+    }
 }
 
 export default AbstractHtmlTsInputMultiValue;
