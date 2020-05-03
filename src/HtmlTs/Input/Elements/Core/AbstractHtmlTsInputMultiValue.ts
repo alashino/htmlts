@@ -5,7 +5,7 @@ import {
 } from "./HtmlTsInputType";
 import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
-import InterfaceHtmlTsInputChoice from "../MultiValue/InterfaceHtmlTsInputChoice";
+import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 
 abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputBase<string[]> {
 

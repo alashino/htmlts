@@ -4,9 +4,9 @@ import {
     HtmlTsInputSingleType
 } from "./HtmlTsInputType";
 import htmlts from "../../../build";
-import HtmlTsInputOption from "../MultiValue/HtmlTsInputOption";
+import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import HtmlTs from "../../../Core/HtmlTs";
-import InterfaceHtmlTsInputChoice from "../MultiValue/InterfaceHtmlTsInputChoice";
+import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
 

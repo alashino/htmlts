@@ -17,8 +17,8 @@ class HtmlTsInputOption implements InterfaceHtmlTsInputChoice {
         this.title = title;
         this.html = htmlts.create("option", {
             attr: {
-                "value": this.value,
-                "title": this.title,
+                value: this.value,
+                title: this.title,
             },
             content: this.label,
         });

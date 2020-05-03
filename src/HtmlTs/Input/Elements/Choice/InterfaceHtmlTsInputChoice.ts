@@ -14,6 +14,8 @@ interface InterfaceHtmlTsInputChoice {
 
     set(): void;
 
+    isSelected(): void;
+
 }
 
 export default InterfaceHtmlTsInputChoice;

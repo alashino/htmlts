@@ -3,7 +3,7 @@ import {
     HtmlTsInputSingleType
 } from "../Core/HtmlTsInputType";
 import htmlts from "../../../build";
-import HtmlTsInputOption from "../MultiValue/HtmlTsInputOption";
+import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import HtmlTs from "../../../Core/HtmlTs";
 import AbstractHtmlTsInputSingleValueChoice from "../Core/AbstractHtmlTsInputSingleValueChoice";
 

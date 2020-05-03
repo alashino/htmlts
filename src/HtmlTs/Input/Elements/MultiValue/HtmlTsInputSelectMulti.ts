@@ -1,7 +1,7 @@
 import AbstractHtmlTsInputMultiValue from "../Core/AbstractHtmlTsInputMultiValue";
 import {HtmlTsInputArgsMultiValueType, HtmlTsInputMultiType} from "../Core/HtmlTsInputType";
 import htmlts from "../../../build";
-import HtmlTsInputOption from "./HtmlTsInputOption";
+import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import HtmlTsUtil from "../../../Core/HtmlTsUtil";
 
 

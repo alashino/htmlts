@@ -1,27 +1,28 @@
 import AbstractHtmlTsInputMultiValue from "../Core/AbstractHtmlTsInputMultiValue";
 import {HtmlTsInputArgsMultiValueType, HtmlTsInputMultiType} from "../Core/HtmlTsInputType";
-import HtmlTs from "../../../Core/HtmlTs";
 import htmlts from "../../../build";
-import InterfaceHtmlTsInputChoice from "./InterfaceHtmlTsInputChoice";
+import HtmlTsInputChoiceCheckbox from "../Choice/HtmlTsInputChoiceCheckbox";
+import HtmlTsUtil from "../../../Core/HtmlTsUtil";
 
 
 export interface HtmlTsInputCheckboxArgs extends HtmlTsInputArgsMultiValueType {
 
 }
 
-class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputCheckboxElement> {
+class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputChoiceCheckbox> {
 
     type: HtmlTsInputMultiType = "checkbox";
 
     constructor(args: HtmlTsInputCheckboxArgs) {
         super(args);
+        this.build();
     }
 
     protected build(): void {
-        this.args.choice.forEach((choice) => {
+        this.choiceValues.forEach((choice) => {
             this.choice.push(
-                new HtmlTsInputCheckboxElement(
-                    this,
+                new HtmlTsInputChoiceCheckbox(
+                    this.name,
                     choice.value,
                     choice.label,
                     choice.title
@@ -32,53 +33,30 @@ class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputCheck
             content: this.choice.map((choice) => {
                 return choice.html;
             }),
-        })
+        });
+        this.html = this.input;
+        this.set(this.init_value);
     }
 
     set(value: string[]): void {
+        this.choice.forEach((choice) => {
+            choice.clear();
+            if (HtmlTsUtil.array.in(choice.value, value)) {
+                choice.set();
+            }
+        });
     }
 
     value(): string[] {
-        return [];
-    }
-
-}
-
-export class HtmlTsInputCheckboxElement implements InterfaceHtmlTsInputChoice {
-
-    html: HtmlTs;
-    htmlLabel: HtmlTs;
-    htmlInput: HtmlTs;
-
-    private _parent: HtmlTsInputCheckbox;
-
-    readonly value: string;
-    readonly label: string;
-    readonly title: string;
-
-    constructor(parent: HtmlTsInputCheckbox, value: string, label: string, title: string = "") {
-        this._parent = parent;
-        this.value = value;
-        this.label = label;
-        this.title = title;
-        this.htmlLabel = htmlts.create("label", this.label);
-        this.htmlInput = htmlts.create("input", {
-            attr: {
-                "type": this._parent.type,
-                "name": this._parent.name,
-                "value": this.value,
-                "title": this.title,
-            },
+        const results: string[] = [];
+        this.choice.forEach((choice) => {
+            if (choice.isSelected()) {
+                results.push(choice.value);
+            }
         });
-        this.html = this.htmlLabel.append(this.htmlInput);
+        return results;
     }
 
-    clear(): void {
-        throw new Error("Method not implemented.");
-    }
-    set(): void {
-        throw new Error("Method not implemented.");
-    }
 }
 
 export default HtmlTsInputCheckbox;

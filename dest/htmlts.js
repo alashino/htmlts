@@ -134,6 +134,54 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nclass 
 
 /***/ }),
 
+/***/ "./src/HtmlTs/Input/Elements/Choice/AbstractChoiceWithLabel.ts":
+/*!*********************************************************************!*\
+  !*** ./src/HtmlTs/Input/Elements/Choice/AbstractChoiceWithLabel.ts ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nclass AbstractChoiceWithLabel {\n    constructor(name, value, label, title = \"\") {\n        this.name = name;\n        this.value = value;\n        this.label = label;\n        this.title = title;\n    }\n    build() {\n        this.htmlInput = build_1.default.create(\"input\", {\n            attr: {\n                name: this.name,\n                type: this.type,\n                value: this.value,\n                title: this.title,\n            },\n            content: this.label,\n        });\n        this.htmlLabel = build_1.default.create(\"label\", {\n            content: [\n                this.htmlInput,\n                this.label,\n            ]\n        });\n        this.html = this.htmlLabel;\n    }\n    clear() {\n        this.htmlInput.removeAttr(\"checked\");\n        // @ts-ignore\n        this.htmlInput.htmlElement.checked = false;\n    }\n    set() {\n        this.htmlInput.setAttr(\"checked\", \"true\");\n        // @ts-ignore\n        this.htmlInput.htmlElement.checked = true;\n    }\n    isSelected() {\n        // @ts-ignore\n        return this.htmlInput.htmlElement.checked;\n    }\n}\nexports.default = AbstractChoiceWithLabel;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/Choice/AbstractChoiceWithLabel.ts?");
+
+/***/ }),
+
+/***/ "./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceCheckbox.ts":
+/*!***********************************************************************!*\
+  !*** ./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceCheckbox.ts ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractChoiceWithLabel_1 = __webpack_require__(/*! ./AbstractChoiceWithLabel */ \"./src/HtmlTs/Input/Elements/Choice/AbstractChoiceWithLabel.ts\");\nclass HtmlTsInputChoiceCheckbox extends AbstractChoiceWithLabel_1.default {\n    constructor(name, value, label, title = \"\") {\n        super(name, value, label, title);\n        this.type = \"checkbox\";\n        this.build();\n    }\n}\nexports.default = HtmlTsInputChoiceCheckbox;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceCheckbox.ts?");
+
+/***/ }),
+
+/***/ "./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceRadio.ts":
+/*!********************************************************************!*\
+  !*** ./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceRadio.ts ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractChoiceWithLabel_1 = __webpack_require__(/*! ./AbstractChoiceWithLabel */ \"./src/HtmlTs/Input/Elements/Choice/AbstractChoiceWithLabel.ts\");\nclass HtmlTsInputChoiceRadio extends AbstractChoiceWithLabel_1.default {\n    constructor(name, value, label, title = \"\") {\n        super(name, value, label, title);\n        this.type = \"radio\";\n        this.build();\n    }\n}\nexports.default = HtmlTsInputChoiceRadio;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceRadio.ts?");
+
+/***/ }),
+
+/***/ "./src/HtmlTs/Input/Elements/Choice/HtmlTsInputOption.ts":
+/*!***************************************************************!*\
+  !*** ./src/HtmlTs/Input/Elements/Choice/HtmlTsInputOption.ts ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nclass HtmlTsInputOption {\n    constructor(value, label, title = \"\") {\n        this.value = value;\n        this.label = label;\n        this.title = title;\n        this.html = build_1.default.create(\"option\", {\n            attr: {\n                value: this.value,\n                title: this.title,\n            },\n            content: this.label,\n        });\n    }\n    clear() {\n        this.html.removeAttr(\"selected\");\n        // @ts-ignore\n        this.html.htmlElement.selected = false;\n    }\n    set() {\n        this.html.setAttr(\"selected\", \"true\");\n        // @ts-ignore\n        this.html.htmlElement.selected = true;\n    }\n    isSelected() {\n        // @ts-ignore\n        return this.html.htmlElement.selected;\n    }\n}\nexports.default = HtmlTsInputOption;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/Choice/HtmlTsInputOption.ts?");
+
+/***/ }),
+
 /***/ "./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputBase.ts":
 /*!*******************************************************************!*\
   !*** ./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputBase.ts ***!
@@ -202,19 +250,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputMultiValue_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputMultiValue */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputMultiValue.ts\");\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nclass HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"checkbox\";\n    }\n    build() {\n        this.args.choice.forEach((choice) => {\n            this.choice.push(new HtmlTsInputCheckboxElement(this, choice.value, choice.label, choice.title));\n        });\n        this.input = build_1.default.create(\"div\", {\n            content: this.choice.map((choice) => {\n                return choice.html;\n            }),\n        });\n    }\n    set(value) {\n    }\n    value() {\n        return [];\n    }\n}\nclass HtmlTsInputCheckboxElement {\n    constructor(parent, value, label, title = \"\") {\n        this._parent = parent;\n        this.value = value;\n        this.label = label;\n        this.title = title;\n        this.htmlLabel = build_1.default.create(\"label\", this.label);\n        this.htmlInput = build_1.default.create(\"input\", {\n            attr: {\n                \"type\": this._parent.type,\n                \"name\": this._parent.name,\n                \"value\": this.value,\n                \"title\": this.title,\n            },\n        });\n        this.html = this.htmlLabel.append(this.htmlInput);\n    }\n    clear() {\n        throw new Error(\"Method not implemented.\");\n    }\n    set() {\n        throw new Error(\"Method not implemented.\");\n    }\n}\nexports.HtmlTsInputCheckboxElement = HtmlTsInputCheckboxElement;\nexports.default = HtmlTsInputCheckbox;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputCheckbox.ts?");
-
-/***/ }),
-
-/***/ "./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputOption.ts":
-/*!*******************************************************************!*\
-  !*** ./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputOption.ts ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nclass HtmlTsInputOption {\n    constructor(value, label, title = \"\") {\n        this.value = value;\n        this.label = label;\n        this.title = title;\n        this.html = build_1.default.create(\"option\", {\n            attr: {\n                \"value\": this.value,\n                \"title\": this.title,\n            },\n            content: this.label,\n        });\n    }\n    clear() {\n        this.html.removeAttr(\"selected\");\n        // @ts-ignore\n        this.html.htmlElement.selected = false;\n    }\n    set() {\n        this.html.setAttr(\"selected\", \"true\");\n        // @ts-ignore\n        this.html.htmlElement.selected = true;\n    }\n    isSelected() {\n        // @ts-ignore\n        return this.html.htmlElement.selected;\n    }\n}\nexports.default = HtmlTsInputOption;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputOption.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputMultiValue_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputMultiValue */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputMultiValue.ts\");\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nconst HtmlTsInputChoiceCheckbox_1 = __webpack_require__(/*! ../Choice/HtmlTsInputChoiceCheckbox */ \"./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceCheckbox.ts\");\nconst HtmlTsUtil_1 = __webpack_require__(/*! ../../../Core/HtmlTsUtil */ \"./src/HtmlTs/Core/HtmlTsUtil.ts\");\nclass HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"checkbox\";\n        this.build();\n    }\n    build() {\n        this.choiceValues.forEach((choice) => {\n            this.choice.push(new HtmlTsInputChoiceCheckbox_1.default(this.name, choice.value, choice.label, choice.title));\n        });\n        this.input = build_1.default.create(\"div\", {\n            content: this.choice.map((choice) => {\n                return choice.html;\n            }),\n        });\n        this.html = this.input;\n        this.set(this.init_value);\n    }\n    set(value) {\n        this.choice.forEach((choice) => {\n            choice.clear();\n            if (HtmlTsUtil_1.default.array.in(choice.value, value)) {\n                choice.set();\n            }\n        });\n    }\n    value() {\n        const results = [];\n        this.choice.forEach((choice) => {\n            if (choice.isSelected()) {\n                results.push(choice.value);\n            }\n        });\n        return results;\n    }\n}\nexports.default = HtmlTsInputCheckbox;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputCheckbox.ts?");
 
 /***/ }),
 
@@ -226,7 +262,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputMultiValue_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputMultiValue */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputMultiValue.ts\");\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nconst HtmlTsInputOption_1 = __webpack_require__(/*! ./HtmlTsInputOption */ \"./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputOption.ts\");\nconst HtmlTsUtil_1 = __webpack_require__(/*! ../../../Core/HtmlTsUtil */ \"./src/HtmlTs/Core/HtmlTsUtil.ts\");\nclass HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"select\";\n        console.log(this);\n        this.build();\n    }\n    build() {\n        this.choiceValues.forEach((choice) => {\n            this.choice.push(new HtmlTsInputOption_1.default(choice.value, choice.label, choice.title));\n        });\n        this.input = build_1.default.create(\"select\", {\n            attr: {\n                \"multiple\": \"true\",\n            },\n            content: this.choice.map((choice) => {\n                return choice.html;\n            }),\n        });\n        this.set(this.init_value);\n        this.html = this.input;\n    }\n    set(value) {\n        this.choice.forEach((choice) => {\n            choice.clear();\n            if (HtmlTsUtil_1.default.array.in(choice.value, value)) {\n                choice.set();\n            }\n        });\n    }\n    value() {\n        const results = [];\n        this.choice.forEach((choice) => {\n            if (choice.isSelected()) {\n                results.push(choice.value);\n            }\n        });\n        return results;\n    }\n}\nexports.default = HtmlTsInputSelectMulti;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputSelectMulti.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputMultiValue_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputMultiValue */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputMultiValue.ts\");\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nconst HtmlTsInputOption_1 = __webpack_require__(/*! ../Choice/HtmlTsInputOption */ \"./src/HtmlTs/Input/Elements/Choice/HtmlTsInputOption.ts\");\nconst HtmlTsUtil_1 = __webpack_require__(/*! ../../../Core/HtmlTsUtil */ \"./src/HtmlTs/Core/HtmlTsUtil.ts\");\nclass HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"select\";\n        console.log(this);\n        this.build();\n    }\n    build() {\n        this.choiceValues.forEach((choice) => {\n            this.choice.push(new HtmlTsInputOption_1.default(choice.value, choice.label, choice.title));\n        });\n        this.input = build_1.default.create(\"select\", {\n            attr: {\n                \"multiple\": \"true\",\n            },\n            content: this.choice.map((choice) => {\n                return choice.html;\n            }),\n        });\n        this.set(this.init_value);\n        this.html = this.input;\n    }\n    set(value) {\n        this.choice.forEach((choice) => {\n            choice.clear();\n            if (HtmlTsUtil_1.default.array.in(choice.value, value)) {\n                choice.set();\n            }\n        });\n    }\n    value() {\n        const results = [];\n        this.choice.forEach((choice) => {\n            if (choice.isSelected()) {\n                results.push(choice.value);\n            }\n        });\n        return results;\n    }\n}\nexports.default = HtmlTsInputSelectMulti;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputSelectMulti.ts?");
 
 /***/ }),
 
@@ -250,7 +286,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputSingleValue_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputSingleValue */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputSingleValue.ts\");\nclass HtmlTsInputRadio extends AbstractHtmlTsInputSingleValue_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"radio\";\n        this.build();\n    }\n    validate() {\n        return true;\n    }\n}\nexports.default = HtmlTsInputRadio;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/SingleValue/HtmlTsInputRadio.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AbstractHtmlTsInputSingleValueChoice_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputSingleValueChoice */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputSingleValueChoice.ts\");\nconst HtmlTsInputChoiceRadio_1 = __webpack_require__(/*! ../Choice/HtmlTsInputChoiceRadio */ \"./src/HtmlTs/Input/Elements/Choice/HtmlTsInputChoiceRadio.ts\");\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nclass HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"radio\";\n        this.build();\n        console.log(this);\n    }\n    build() {\n        this.choiceValues.forEach((choice) => {\n            this.choice.push(new HtmlTsInputChoiceRadio_1.default(this.name, choice.value, choice.label, choice.title));\n        });\n        this.html = build_1.default.create(\"div\", {\n            content: this.choice.map((choice) => {\n                return choice.html;\n            }),\n        });\n        this.set(this.init_value);\n    }\n    value() {\n        for (const choice of this.choice) {\n            if (choice.isSelected()) {\n                return choice.value;\n            }\n        }\n        return \"\";\n    }\n    validate() {\n        return true;\n    }\n}\nexports.default = HtmlTsInputRadio;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/SingleValue/HtmlTsInputRadio.ts?");
 
 /***/ }),
 
@@ -262,7 +298,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nconst HtmlTsInputOption_1 = __webpack_require__(/*! ../MultiValue/HtmlTsInputOption */ \"./src/HtmlTs/Input/Elements/MultiValue/HtmlTsInputOption.ts\");\nconst AbstractHtmlTsInputSingleValueChoice_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputSingleValueChoice */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputSingleValueChoice.ts\");\nclass HtmlTsInputSelectOne extends AbstractHtmlTsInputSingleValueChoice_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"select\";\n        this.build();\n    }\n    createInput() {\n        this.choice = this.choiceValues.map((choice) => {\n            return new HtmlTsInputOption_1.default(choice.value, choice.label, choice.title);\n        });\n        return build_1.default.create(\"select\", {\n            content: this.choice.map((option) => {\n                return option.html;\n            })\n        });\n    }\n    value() {\n        // @ts-ignore\n        return this.html.htmlElement.value;\n    }\n    validate() {\n        return true;\n    }\n}\nexports.default = HtmlTsInputSelectOne;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/SingleValue/HtmlTsInputSelectOne.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst build_1 = __webpack_require__(/*! ../../../build */ \"./src/HtmlTs/build.ts\");\nconst HtmlTsInputOption_1 = __webpack_require__(/*! ../Choice/HtmlTsInputOption */ \"./src/HtmlTs/Input/Elements/Choice/HtmlTsInputOption.ts\");\nconst AbstractHtmlTsInputSingleValueChoice_1 = __webpack_require__(/*! ../Core/AbstractHtmlTsInputSingleValueChoice */ \"./src/HtmlTs/Input/Elements/Core/AbstractHtmlTsInputSingleValueChoice.ts\");\nclass HtmlTsInputSelectOne extends AbstractHtmlTsInputSingleValueChoice_1.default {\n    constructor(args) {\n        super(args);\n        this.type = \"select\";\n        this.build();\n    }\n    createInput() {\n        this.choice = this.choiceValues.map((choice) => {\n            return new HtmlTsInputOption_1.default(choice.value, choice.label, choice.title);\n        });\n        return build_1.default.create(\"select\", {\n            content: this.choice.map((option) => {\n                return option.html;\n            })\n        });\n    }\n    value() {\n        // @ts-ignore\n        return this.html.htmlElement.value;\n    }\n    validate() {\n        return true;\n    }\n}\nexports.default = HtmlTsInputSelectOne;\n\n\n//# sourceURL=webpack:///./src/HtmlTs/Input/Elements/SingleValue/HtmlTsInputSelectOne.ts?");
 
 /***/ }),
 
