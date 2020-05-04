@@ -2,11 +2,11 @@ import InterfaceHtmlTsInput from "./InterfaceHtmlTsInput";
 import HtmlTs from "../../../Core/HtmlTs";
 import {
     HtmlTsInputArgsBaseType,
-    HtmlTsInputArgsSingleValueType,
-    HtmlTsInputSingleType, HtmlTsInputStateType,
+    HtmlTsInputStateType,
     HtmlTsInputType
 } from "./HtmlTsInputType";
-import htmlts from "../../../build";
+import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
+import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
 
 abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
 
@@ -19,16 +19,27 @@ abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
 
     abstract type: HtmlTsInputType;
 
-    state: HtmlTsInputStateType;
+    protected abstract validator: InterfaceHtmlTsInputValidator<T>;
+    protected validateParam: HtmlTsInputValidatorBaseTypes;
 
+    state: HtmlTsInputStateType;
     init_value: T;
 
     protected constructor(args: HtmlTsInputArgsBaseType<T>) {
         this.name = args.name;
         this.state = args.state || "enable";
+        this.validateParam = args.validate;
     }
 
-    protected abstract build(): void;
+    protected build(): void {
+        this.input = this.createInput();
+        this.set(this.init_value);
+        this.changeState(this.state);
+        this.setOnChange();
+        this.html = this.input;
+    }
+
+    protected abstract createInput(): HtmlTs;
 
     abstract set(value: T): void;
 
@@ -41,6 +52,25 @@ abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
     abstract value(): T;
 
     abstract validate(): boolean;
+
+    //
+    // 値が変わった時の動作
+    //
+
+    protected setOnChange() {
+        this.input.on("change", (html) => {
+            this.whenValueChanged();
+        });
+    }
+
+    protected whenValueChanged(): void {
+        if (this.validator !== undefined &&
+            this.validateParam !== undefined &&
+            this.validateParam.realTimeValidate
+        ) {
+            this.validate();
+        }
+    }
 
     //
     // state

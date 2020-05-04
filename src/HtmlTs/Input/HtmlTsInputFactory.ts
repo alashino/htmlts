@@ -1,11 +1,13 @@
 import HtmlTsInputHidden, {HtmlTsInputHiddenArgs} from "./Elements/SingleValue/HtmlTsInputHidden";
-import HtmlTsInputText, {HtmlTsInputTextArgs} from "./Elements/SingleValue/HtmlTsInputText";
-import HtmlTsInputTextArea, {HtmlTsInputTextAreaArgs} from "./Elements/SingleValue/HtmlTsInputTextArea";
+import HtmlTsInputText from "./Elements/SingleValue/Text/HtmlTsInputText";
+import HtmlTsInputTextArea, {HtmlTsInputTextAreaArgs} from "./Elements/SingleValue/Text/HtmlTsInputTextArea";
 import HtmlTsInputSelectOne, {HtmlTsInputSelectOneArgs} from "./Elements/SingleValue/HtmlTsInputSelectOne";
-import HtmlTsInputRadio, {HtmlTsInputRadioArgs} from "./Elements/SingleValue/HtmlTsInputRadio";
+import HtmlTsInputRadio, {HtmlTsInputRadioArgs} from "./Elements/SingleValue/Choice/HtmlTsInputRadio";
 import HtmlTsInputController from "./Elements/InputController/HtmlTsInputController";
 import HtmlTsInputSelectMulti, {HtmlTsInputSelectMultiArgs} from "./Elements/MultiValue/HtmlTsInputSelectMulti";
-import HtmlTsInputCheckbox, {HtmlTsInputCheckboxArgs} from "./Elements/MultiValue/HtmlTsInputCheckbox";
+import HtmlTsInputCheckbox, {HtmlTsInputCheckboxArgs} from "./Elements/MultiValue/Choice/HtmlTsInputCheckbox";
+import {AbstractHtmlTsInputTextArgs} from "./Elements/SingleValue/Text/AbstractHtmlTsInputText";
+import HtmlTsInputPassword from "./Elements/SingleValue/Text/HtmlTsInputPassword";
 
 
 class HtmlTsInputFactory {
@@ -21,8 +23,12 @@ class HtmlTsInputFactory {
         return new HtmlTsInputHidden(args);
     }
 
-    text(args: HtmlTsInputTextArgs): HtmlTsInputText {
+    text(args: AbstractHtmlTsInputTextArgs): HtmlTsInputText {
         return new HtmlTsInputText(args);
+    }
+
+    password(args: AbstractHtmlTsInputTextArgs): HtmlTsInputPassword {
+        return new HtmlTsInputPassword(args);
     }
 
     textarea(args: HtmlTsInputTextAreaArgs): HtmlTsInputTextArea {

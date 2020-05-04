@@ -1,65 +1,37 @@
 import AbstractHtmlTsInputMultiValue from "../Core/AbstractHtmlTsInputMultiValue";
-import {HtmlTsInputArgsMultiValueType, HtmlTsInputMultiType} from "../Core/HtmlTsInputType";
-import htmlts from "../../../build";
+import {HtmlTsInputArgsMultiValueType, HtmlTsInputChoiceType, HtmlTsInputMultiType} from "../Core/HtmlTsInputType";
 import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
-import HtmlTsUtil from "../../../Core/HtmlTsUtil";
+import {TagNameTypes} from "../../../Core/HtmlTsTypes";
+import HtmlTs from "../../../Core/HtmlTs";
 
 
 export interface HtmlTsInputSelectMultiArgs extends HtmlTsInputArgsMultiValueType {
-
 }
 
 class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOption> {
 
     type: HtmlTsInputMultiType = "select";
+    protected inputTagName: TagNameTypes = "select";
 
     constructor(args: HtmlTsInputSelectMultiArgs) {
         super(args);
         this.build();
     }
 
-    protected build(): void {
-        this.choiceValues.forEach((choice) => {
-            this.choice.push(
-                new HtmlTsInputOption(
-                    choice.value,
-                    choice.label,
-                    choice.title,
-                    this.state,
-                )
-            );
-        });
-        this.input = htmlts.create("select", {
-            attr: {
-                "multiple": "true",
-            },
-            content: this.choice.map((choice) => {
-                return choice.html;
-            }),
-        });
-        this.set(this.init_value);
-        this.html = this.input;
+    protected createInput(): HtmlTs {
+        const input = super.createInput();
+        input.setAttr("multiple", "true");
+        return input;
     }
 
-    set(value: string[]): void {
-        this.choice.forEach((choice) => {
-            choice.clear();
-            if (HtmlTsUtil.array.in(choice.value, value)) {
-                choice.set();
-            }
-        });
+    protected createChoice(choice: HtmlTsInputChoiceType): HtmlTsInputOption {
+        return new HtmlTsInputOption(
+            choice.value,
+            choice.label,
+            choice.title,
+            this.state,
+        );
     }
-
-    value(): string[] {
-        const results: string[] = [];
-        this.choice.forEach((choice) => {
-            if (choice.isSelected()) {
-                results.push(choice.value);
-            }
-        })
-        return results;
-    }
-
 
 }
 

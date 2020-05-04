@@ -1,5 +1,6 @@
 import AbstractHtmlTsInputSingleValue from "../Core/AbstractHtmlTsInputSingleValue";
 import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType} from "../Core/HtmlTsInputType";
+import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
 
 export interface HtmlTsInputHiddenArgs extends HtmlTsInputArgsSingleValueType {
     isClearable?: boolean; // clearできるかどうか。defaultはfalse
@@ -9,6 +10,8 @@ class HtmlTsInputHidden extends AbstractHtmlTsInputSingleValue {
 
     type: HtmlTsInputSingleType = "hidden";
     args: HtmlTsInputHiddenArgs;
+
+    protected validator: InterfaceHtmlTsInputValidator<string>;
 
     constructor(args: HtmlTsInputHiddenArgs) {
         super(args);
@@ -25,6 +28,7 @@ class HtmlTsInputHidden extends AbstractHtmlTsInputSingleValue {
     validate(): boolean {
         return true;
     }
+
 
 }
 

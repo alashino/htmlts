@@ -1,11 +1,7 @@
-export type HtmlTsInputValidateType = {
-    realtimeValidation: boolean;
-    isNotNull: boolean;
-    isNumber: boolean;
-};
+import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
 
 // input type
-export type HtmlTsInputSingleType = "hidden" | "text" | "textarea" | "select" | "radio";
+export type HtmlTsInputSingleType = "hidden" | "text" | "password" | "textarea" | "select" | "radio";
 export type HtmlTsInputMultiType = "select" | "checkbox";
 export type HtmlTsInputType = HtmlTsInputSingleType | HtmlTsInputMultiType;
 
@@ -18,6 +14,7 @@ export interface HtmlTsInputArgsBaseType<T> {
     name?: string;
     value?: T;
     state?: HtmlTsInputStateType; // デフォルトではenable
+    validate?: HtmlTsInputValidatorBaseTypes;
 }
 
 export interface HtmlTsInputArgsSingleValueType extends HtmlTsInputArgsBaseType <string> {

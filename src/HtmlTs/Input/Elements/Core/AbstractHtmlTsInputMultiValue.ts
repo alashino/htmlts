@@ -1,11 +1,15 @@
-import HtmlTs from "../../../Core/HtmlTs";
 import {
-    HtmlTsInputArgsMultiValueType, HtmlTsInputChoiceType,
-    HtmlTsInputMultiType, HtmlTsInputStateType
+    HtmlTsInputArgsMultiValueType,
+    HtmlTsInputChoiceType,
+    HtmlTsInputMultiType
 } from "./HtmlTsInputType";
-import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
 import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
+import HtmlTsUtil from "../../../Core/HtmlTsUtil";
+import HtmlTsInputChoiceValidator from "../Validator/HtmlTsInputChoiceValidator";
+import HtmlTs from "../../../Core/HtmlTs";
+import htmlts from "../../../build";
+import {TagNameTypes} from "../../../Core/HtmlTsTypes";
 
 abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputBase<string[]> {
 
@@ -14,6 +18,9 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
     choice: T[] = [];
 
     abstract type: HtmlTsInputMultiType;
+    protected abstract inputTagName: TagNameTypes;
+
+    protected validator: HtmlTsInputChoiceValidator;
 
     protected args: HtmlTsInputArgsMultiValueType;
     protected choiceValues: HtmlTsInputChoiceType[] = [];
@@ -24,27 +31,50 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
         this.name = args.name;
         this.init_value = args.value || [];
         this.choiceValues = args.choice || [];
+        this.validator = new HtmlTsInputChoiceValidator(args.validate);
     }
+
+    protected createInput(): HtmlTs {
+        this.choice = this.choiceValues.map((choice) => {
+            return this.createChoice(choice);
+        });
+        const input = htmlts.create(this.inputTagName, {
+            content: this.choice.map((choice) => {
+                return choice.html;
+            }),
+        });
+        return input;
+    }
+
+    protected abstract createChoice(choice: HtmlTsInputChoiceType): T;
 
     clear(): void {
         this.set([]);
     }
 
-    abstract set(value: string[]): void;
+    set(value: string[]): void {
+        this.choice.forEach((choice) => {
+            choice.clear();
+            if (HtmlTsUtil.array.in(choice.value, value)) {
+                choice.set();
+            }
+        });
+    }
 
-    abstract value(): string[];
+    value(): string[] {
+        const results: string[] = [];
+        this.choice.forEach((choice) => {
+            if (choice.isSelected()) {
+                results.push(choice.value);
+            }
+        })
+        return results;
+    }
 
     validate(): boolean {
         const result: boolean = true;
         // todo 実装
         return result;
-    }
-
-    changeState(state: HtmlTsInputStateType): void {
-        this.state = state;
-        this.choice.forEach((choice) => {
-            choice.changeState(state);
-        });
     }
 }
 

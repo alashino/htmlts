@@ -1,24 +1,23 @@
-import AbstractHtmlTsInputSingleValue from "../Core/AbstractHtmlTsInputSingleValue";
-import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType} from "../Core/HtmlTsInputType";
-import HtmlTs from "../../../Core/HtmlTs";
-import htmlts from "../../../build";
+import {HtmlTsInputSingleType} from "../../Core/HtmlTsInputType";
+import HtmlTs from "../../../../Core/HtmlTs";
+import htmlts from "../../../../build";
+import HtmlTsInputTextValidator from "../../Validator/HtmlTsInputTextValidator";
+import AbstractHtmlTsInputText, {AbstractHtmlTsInputTextArgs} from "./AbstractHtmlTsInputText";
 
-export interface HtmlTsInputTextAreaArgs extends HtmlTsInputArgsSingleValueType {
-    placeHolder?: string;
+export interface HtmlTsInputTextAreaArgs extends AbstractHtmlTsInputTextArgs {
     rows?: number | string;
     cols?: number | string;
 }
 
-class HtmlTsInputTextArea extends AbstractHtmlTsInputSingleValue {
+class HtmlTsInputTextArea extends AbstractHtmlTsInputText {
 
     type: HtmlTsInputSingleType = "textarea";
+
+    protected validator: HtmlTsInputTextValidator;
 
     constructor(args: HtmlTsInputTextAreaArgs) {
         super(args);
         this.build();
-        if (args.placeHolder !== undefined) {
-            this.input.setAttr("placeholder", args.placeHolder);
-        }
         if (args.rows !== undefined) {
             this.input.setAttr("rows", args.rows);
         }
@@ -38,7 +37,6 @@ class HtmlTsInputTextArea extends AbstractHtmlTsInputSingleValue {
     value(): string {
         return this.input.getText();
     }
-
 
 }
 

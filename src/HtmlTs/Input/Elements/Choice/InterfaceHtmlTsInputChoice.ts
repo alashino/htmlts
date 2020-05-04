@@ -14,7 +14,7 @@ interface InterfaceHtmlTsInputChoice {
 
     set(): void;
 
-    isSelected(): void;
+    isSelected(): boolean;
 
     changeState(state: HtmlTsInputStateType): void;
 
