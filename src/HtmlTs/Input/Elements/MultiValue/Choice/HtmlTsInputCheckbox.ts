@@ -7,6 +7,8 @@ import {
 } from "../../Core/HtmlTsInputType";
 import HtmlTsInputChoiceCheckbox from "../../Choice/HtmlTsInputChoiceCheckbox";
 import {TagNameTypes} from "../../../../Core/HtmlTsTypes";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import HtmlTs from "../../../../Core/HtmlTs";
 
 
 export interface HtmlTsInputCheckboxArgs extends HtmlTsInputArgsMultiValueType {
@@ -37,6 +39,11 @@ class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputChoic
         this.choice.forEach((choice) => {
             choice.changeState(state);
         });
+    }
+
+    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
+        const decorator = decoratorSet.checkbox(this.args.display);
+        return decorator.createHtml(this);
     }
 
 }

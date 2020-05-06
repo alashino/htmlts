@@ -55,20 +55,22 @@ class HtmlTsFactory {
     }
 
     private setContents(htmlTs: HtmlTs, content: HtmlTsContentType): void {
+        if (content === undefined) return;
         if (typeof content === "string" || typeof content === "number") {
-            htmlTs.text(content);
-        } else if (content instanceof HtmlTs) {
-            htmlTs.append(content);
+            htmlTs.setText(content);
         } else if (content instanceof Array) {
             for (const c of content) {
+                if (c === undefined) continue;
                 if (typeof c === "string" || typeof c === "number") {
                     htmlTs.append(
                         this.create("span", c)
                     );
-                } else if (c instanceof HtmlTs) {
+                } else {
                     htmlTs.append(c);
                 }
             }
+        } else {
+            htmlTs.append(content);
         }
     }
 

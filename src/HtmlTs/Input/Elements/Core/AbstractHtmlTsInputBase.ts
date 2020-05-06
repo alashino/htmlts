@@ -7,6 +7,10 @@ import {
 } from "./HtmlTsInputType";
 import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
 import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
+import htmlts from "../../../build";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import HtmlTsInputDefaultDecorator from "../../Decorator/HtmlTsInputDefaultDecorator";
+import {HtmlTsInputDecoratorChoiceTypes, HtmlTsInputDecoratorBaseTypes} from "../../Decorator/HtmlTsInputDecoratorTypes";
 
 abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
 
@@ -15,12 +19,17 @@ abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
     html: HtmlTs;
     input: HtmlTs;
     label: HtmlTs;
+    helpText: HtmlTs;
     validation: HtmlTs;
+
+    labelContent: string | HtmlTs;
+    helpTextContent: string | HtmlTs;
 
     abstract type: HtmlTsInputType;
 
     protected abstract validator: InterfaceHtmlTsInputValidator<T>;
     protected validateParam: HtmlTsInputValidatorBaseTypes;
+    protected displayParam: HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorChoiceTypes;
 
     state: HtmlTsInputStateType;
     init_value: T;
@@ -29,6 +38,9 @@ abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
         this.name = args.name;
         this.state = args.state || "enable";
         this.validateParam = args.validate;
+        this.labelContent = args.label;
+        this.helpTextContent = args.helpText;
+        this.displayParam = args.display;
     }
 
     protected build(): void {
@@ -36,8 +48,15 @@ abstract class AbstractHtmlTsInputBase<T> implements InterfaceHtmlTsInput<T> {
         this.set(this.init_value);
         this.changeState(this.state);
         this.setOnChange();
-        this.html = this.input;
+        if (htmlts.input.getDecoratorSet() !== undefined) {
+            this.html = this.getHtmlByDecorator(htmlts.input.getDecoratorSet());
+        } else {
+            const decorator = new HtmlTsInputDefaultDecorator(this.displayParam);
+            this.html = decorator.createHtml(this);
+        }
     }
+
+    protected abstract getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs;
 
     protected abstract createInput(): HtmlTs;
 

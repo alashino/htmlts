@@ -3,6 +3,7 @@ import {HtmlTsInputArgsMultiValueType, HtmlTsInputChoiceType, HtmlTsInputMultiTy
 import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
 import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 
 
 export interface HtmlTsInputSelectMultiArgs extends HtmlTsInputArgsMultiValueType {
@@ -31,6 +32,11 @@ class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOp
             choice.title,
             this.state,
         );
+    }
+
+    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
+        const decorator = decoratorSet.selectMulti(this.args.display);
+        return decorator.createHtml(this);
     }
 
 }

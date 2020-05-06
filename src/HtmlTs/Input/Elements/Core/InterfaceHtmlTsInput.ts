@@ -3,12 +3,16 @@ import {HtmlTsInputStateType} from "./HtmlTsInputType";
 
 interface InterfaceHtmlTsInput<T> {
 
-    // html
+    // input name attr
     name: string;
+
+    // html
     html: HtmlTs;
-    label: HtmlTs;
     input: HtmlTs;
     validation: HtmlTs;
+
+    labelContent: string | HtmlTs | undefined;
+    helpTextContent: string | HtmlTs | undefined;
 
     // value
     init_value: T;

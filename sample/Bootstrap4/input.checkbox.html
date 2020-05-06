@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HtmlTs:Bootstrap4 Input:CheckBox</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="../../dest/htmlts.js"></script>
+    <script src="../../dest/htmltsBootstrap4.js"></script>
+</head>
+<body>
+<h1>HtmlTs:Bootstrap4 Input:CheckBox</h1>
+<div>
+    <p>
+        <a href="javascript:void(0)" onclick="console.log(inputController.getValues())">log values</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="console.log(inputController.validate())">log validate</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="rotateState();">change state</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="inputController.reset();">reset Value</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onclick="inputController.clear();">clear Value</a>
+    </p>
+</div>
+<div id="root"></div>
+</body>
+</html>
+<script>
+    const inputController = htmlts.input.controller();
+
+    (function () {
+        const input_enable = htmlts.input.checkbox({
+            label: "enable label",
+            helpText: "this is help text",
+            name: "input_enable",
+            value: ["value2"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ],
+            display: {
+                size: "l", // default m
+                inputColumnSize: 5 // default undefined
+            }
+        });
+        inputController.subscribe(input_enable);
+        htmlts.createById("root").append(input_enable.html);
+    })();
+
+    (function () {
+        const input_inline = htmlts.input.checkbox({
+            label: "inline label",
+            helpText: "this is help text",
+            name: "input_inline",
+            value: ["value2", "value4"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ],
+            display: {
+                size: "l", // default m
+                inputColumnSize: 5, // default undefined,
+                choiceDisplay: "inline"
+            }
+        });
+        inputController.subscribe(input_inline);
+        htmlts.createById("root").append(input_inline.html);
+    })();
+
+    (function () {
+        const input_readonly = htmlts.input.checkbox({
+            name: "input_readonly",
+            state: "readonly",
+            value: ["value2", "value4"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ]
+        });
+        inputController.subscribe(input_readonly);
+        htmlts.createById("root").append(input_readonly.html);
+    })();
+
+    (function () {
+        const input_disable = htmlts.input.checkbox({
+            name: "input_disable",
+            state: "disabled",
+            value: ["value2", "value4"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ],
+            display: {
+                size: "s", // default m
+                inputColumnSize: "auto" // default undefined
+            }
+        });
+        inputController.subscribe(input_disable);
+        htmlts.createById("root").append(input_disable.html);
+    })();
+
+    (function () {
+        const input_horizontal = htmlts.input.checkbox({
+            label: "horizontal label",
+            helpText: "this is help text",
+            name: "input_horizontal",
+            value: ["value2", "value4"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ],
+            display: {
+                layout: "horizontal",
+            }
+        });
+        inputController.subscribe(input_horizontal);
+        htmlts.createById("root").append(input_horizontal.html);
+    })();
+
+    (function () {
+        const input_horizontal = htmlts.input.checkbox({
+            label: "horizontal inline label",
+            helpText: "this is help text",
+            name: "input_horizontal_inlien",
+            value: ["value2", "value4"],
+            choice: [
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                }
+            ],
+            display: {
+                layout: "horizontal",
+                choiceDisplay: "inline"
+            }
+        });
+        inputController.subscribe(input_horizontal);
+        htmlts.createById("root").append(input_horizontal.html);
+    })();
+
+    function rotateState() {
+        inputController.getInputs("input_enable").forEach((input) => {
+            input.rotateState();
+        });
+    }
+
+</script>

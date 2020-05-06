@@ -3,6 +3,7 @@ import HtmlTs from "../../../../Core/HtmlTs";
 import htmlts from "../../../../build";
 import HtmlTsInputTextValidator from "../../Validator/HtmlTsInputTextValidator";
 import AbstractHtmlTsInputText, {AbstractHtmlTsInputTextArgs} from "./AbstractHtmlTsInputText";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 
 export interface HtmlTsInputTextAreaArgs extends AbstractHtmlTsInputTextArgs {
     rows?: number | string;
@@ -24,6 +25,11 @@ class HtmlTsInputTextArea extends AbstractHtmlTsInputText {
         if (args.cols !== undefined) {
             this.input.setAttr("cols", args.cols);
         }
+    }
+
+    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
+        const decorator = decoratorSet.textarea(this.args.display);
+        return decorator.createHtml(this);
     }
 
     protected createInput(): HtmlTs {

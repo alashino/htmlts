@@ -8,9 +8,21 @@ import HtmlTsInputSelectMulti, {HtmlTsInputSelectMultiArgs} from "./Elements/Mul
 import HtmlTsInputCheckbox, {HtmlTsInputCheckboxArgs} from "./Elements/MultiValue/Choice/HtmlTsInputCheckbox";
 import {AbstractHtmlTsInputTextArgs} from "./Elements/SingleValue/Text/AbstractHtmlTsInputText";
 import HtmlTsInputPassword from "./Elements/SingleValue/Text/HtmlTsInputPassword";
+import HtmlTsInputDefaultDecoratorSet from "./Decorator/HtmlTsInputDefaultDecoratorSet";
+import InterfaceHtmlTsInputDecoratorSet from "./Decorator/InterfaceHtmlTsInputDecoratorSet";
 
 
 class HtmlTsInputFactory {
+
+    private decoratorSet: InterfaceHtmlTsInputDecoratorSet;
+
+    setDecoratorSet(decoratorSet: InterfaceHtmlTsInputDecoratorSet): void {
+        this.decoratorSet = decoratorSet;
+    }
+
+    getDecoratorSet(): InterfaceHtmlTsInputDecoratorSet {
+        return this.decoratorSet;
+    }
 
     controller(): HtmlTsInputController {
         return new HtmlTsInputController();

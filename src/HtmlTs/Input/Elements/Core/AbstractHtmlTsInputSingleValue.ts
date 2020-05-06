@@ -3,6 +3,7 @@ import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType, HtmlTsInputStateT
 import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
 import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 
 abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<string> {
 
@@ -19,6 +20,8 @@ abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<st
         this.name = args.name;
         this.init_value = (args.value === undefined) ? "" : args.value + "";
     }
+
+    protected abstract getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs;
 
     protected createInput(): HtmlTs {
         const input = htmlts.create("input", {

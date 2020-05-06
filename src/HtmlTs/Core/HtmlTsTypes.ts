@@ -1,7 +1,7 @@
 import HtmlTs from "./HtmlTs";
 
 
-export type TagNameBlockTypes = "div" | "section" | "p" | "code";
+export type TagNameBlockTypes = "div" | "section" | "p" | "code" | "small";
 export type TagNameListTypes = "ul" | "ol" | "li" | "dd" | "dt";
 export type TagNameInputTypes = "input" | "select" | "textarea" | "option" | "optgroup";
 export type TagNameHeader = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -22,7 +22,7 @@ export type HtmlTsOptionType = string | number | HtmlTsOptions | HtmlTs | Array<
 export type HtmlTsContentType = string | number | HtmlTs | Array<string | number | HtmlTs>;
 
 export type HtmlTsOptions = {
-    class?: string;
+    class?: string | string[];
     css?: { [key: string]: string | number };
     attr?: { [key: string]: string | number };
     content?: HtmlTsContentType;

@@ -2,10 +2,15 @@ import AbstractHtmlTsInputSingleValue from "../../Core/AbstractHtmlTsInputSingle
 import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType} from "../../Core/HtmlTsInputType";
 import HtmlTsInputTextValidator from "../../Validator/HtmlTsInputTextValidator";
 import {HtmlTsInputTextValidatorType} from "../../Validator/HtmlTsInputValidatorTypes";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import HtmlTs from "../../../../Core/HtmlTs";
+import {HtmlTsInputDecoratorChoiceTypes, HtmlTsInputDecoratorBaseTypes} from "../../../Decorator/HtmlTsInputDecoratorTypes";
 
 export interface AbstractHtmlTsInputTextArgs extends HtmlTsInputArgsSingleValueType {
     placeHolder?: string;
     validate?: HtmlTsInputTextValidatorType;
+    display?: HtmlTsInputDecoratorBaseTypes;
+
 }
 
 abstract class AbstractHtmlTsInputText extends AbstractHtmlTsInputSingleValue {

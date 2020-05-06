@@ -93,14 +93,22 @@ class HtmlTs {
     // class系
     //
 
-    addClass(className: string): HtmlTs {
-        const currentClassNames: string[] = this.getCurrentClassNames();
-        const addClassNames: string[] = this.splitClassNames(className);
-        for (const addClassName of addClassNames) {
-            if (HtmlTsUtil.array.in(addClassName, currentClassNames)) continue;
-            currentClassNames.push(addClassName);
+    addClass(className: string | string[]): HtmlTs {
+        if (className instanceof Array) {
+            className.forEach((cn) => {
+                if (cn !== undefined) {
+                    this.addClass(cn);
+                }
+            });
+        } else {
+            const currentClassNames: string[] = this.getCurrentClassNames();
+            const addClassNames: string[] = this.splitClassNames(className);
+            for (const addClassName of addClassNames) {
+                if (HtmlTsUtil.array.in(addClassName, currentClassNames)) continue;
+                currentClassNames.push(addClassName);
+            }
+            this.setAttribute("class", currentClassNames.join(" "));
         }
-        this.setAttribute("class", currentClassNames.join(" "));
         return this;
     }
 

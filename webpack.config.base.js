@@ -1,10 +1,5 @@
 module.exports = {
-    mode: 'development',
-    entry: __dirname + '/src/Bootstrap4/index.ts', //ファイルをまとめる際のエントリーポイント
-    output: {
-        path: __dirname + "/dest",
-        filename: 'htmltsBootstrap4.js' //まとめた結果出力されるファイル名
-    },
+    devtool: "source-map",
     resolve: {
         extensions: ['.ts', '.js'] //拡張子がtsだったらTypescirptでコンパイルする
     },

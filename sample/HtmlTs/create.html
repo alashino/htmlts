@@ -14,6 +14,10 @@
         htmlts.createById("root").append(
             htmlts.create("h1", "hello, world!")
         ).append(
+            htmlts.create("div", {
+                content: htmlts.create("p", "説明を開始します！")
+            })
+        ).append(
             htmlts.create("section", {
                 content: [
                     htmlts.create("h2", "How to Use?"),
@@ -74,7 +78,7 @@
             htmlts.create("section", {
                 content: [
                     htmlts.create("h2", "addClass"),
-                    htmlts.create("sectoin", {
+                    htmlts.create("section", {
                         content: [
                             htmlts.create("p", {
                                 class: "hoge  moge",
