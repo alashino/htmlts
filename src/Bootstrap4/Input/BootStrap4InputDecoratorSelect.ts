@@ -1,7 +1,7 @@
 import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorTextTypes
-} from "../../HtmlTs/Input/Decorator/HtmlTsInputDecoratorTypes";
+} from "../../HtmlTs/Input/Decorator/Core/HtmlTsInputDecoratorTypes";
 import HtmlTs from "../../HtmlTs/Core/HtmlTs";
 import htmlts from "../../HtmlTs/build";
 import AbstractBootStrap4InputDecorator from "./AbstractBootStrap4InputDecorator";

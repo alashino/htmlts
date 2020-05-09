@@ -34,10 +34,33 @@
         const input_enable = htmlts.input.text({
             name: "input_enable",
             value: "input_enable_value",
-            placeHolder: "text input"
+            placeHolder: "text input",
+            helpText: "5文字以上10文字以下で入力してください",
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                isLengthOrMore: 5,
+                isLengthOrLess: 10,
+            }
         });
         inputController.subscribe(input_enable);
         htmlts.createById("root").append(input_enable.html);
+    })();
+
+    (function () {
+        const input_number = htmlts.input.text({
+            name: "input_number",
+            value: "input_number_value",
+            placeHolder: "text input",
+            helpText: "数値でで入力してください",
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                isNumber: true
+            }
+        });
+        inputController.subscribe(input_number);
+        htmlts.createById("root").append(input_number.html);
     })();
 
     (function () {

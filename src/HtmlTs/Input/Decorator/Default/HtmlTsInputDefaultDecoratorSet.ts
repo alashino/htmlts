@@ -1,9 +1,9 @@
-import AbstractHtmlTsInputDecoratorSet from "./AbstractHtmlTsInputDecoratorSet";
-import InterfaceHtmlTsInputDecorator from "./InterfaceHtmlTsInputDecorator";
+import AbstractHtmlTsInputDecoratorSet from "../Core/AbstractHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../Core/InterfaceHtmlTsInputDecorator";
 import {
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorTextTypes
-} from "./HtmlTsInputDecoratorTypes";
+} from "../Core/HtmlTsInputDecoratorTypes";
 
 
 class HtmlTsInputDefaultDecoratorSet extends AbstractHtmlTsInputDecoratorSet {

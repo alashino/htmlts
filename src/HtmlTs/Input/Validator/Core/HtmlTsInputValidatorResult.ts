@@ -8,7 +8,6 @@ class HtmlTsInputValidatorResult {
         this.result = false;
         this.messages.push(message);
     }
-
 }
 
 export default HtmlTsInputValidatorResult;

@@ -1,10 +1,10 @@
 import {HtmlTsInputSingleType} from "../../Core/HtmlTsInputType";
 import HtmlTs from "../../../../Core/HtmlTs";
 import htmlts from "../../../../build";
-import HtmlTsInputTextValidator from "../../Validator/HtmlTsInputTextValidator";
+import HtmlTsInputTextValidator from "../../../Validator/HtmlTsInputTextValidator";
 import AbstractHtmlTsInputText, {AbstractHtmlTsInputTextArgs} from "./AbstractHtmlTsInputText";
-import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
-import InterfaceHtmlTsInputDecorator from "../../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputTextAreaArgs extends AbstractHtmlTsInputTextArgs {
     rows?: number | string;

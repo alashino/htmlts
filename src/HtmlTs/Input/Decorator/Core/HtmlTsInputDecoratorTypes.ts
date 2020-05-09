@@ -1,4 +1,4 @@
-import HtmlTs from "../../Core/HtmlTs";
+import HtmlTs from "../../../Core/HtmlTs";
 
 export type HtmlTsInputDecoratorSizeType = "xs" | "s" | "m" | "l" | "xl";
 

@@ -1,9 +1,9 @@
 import AbstractHtmlTsInputSingleValue from "../Core/AbstractHtmlTsInputSingleValue";
 import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType} from "../Core/HtmlTsInputType";
-import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
-import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputValidator from "../../Validator/Core/InterfaceHtmlTsInputValidator";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../Core/HtmlTs";
-import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputHiddenArgs extends HtmlTsInputArgsSingleValueType {
     isClearable?: boolean; // clearできるかどうか。defaultはfalse

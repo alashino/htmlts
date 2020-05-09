@@ -5,17 +5,17 @@ import {
     HtmlTsInputStateType,
     HtmlTsInputType
 } from "./HtmlTsInputType";
-import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
-import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
+import InterfaceHtmlTsInputValidator from "../../Validator/Core/InterfaceHtmlTsInputValidator";
+import {HtmlTsInputValidatorBaseTypes} from "../../Validator/Core/HtmlTsInputValidatorTypes";
 import htmlts from "../../../build";
-import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
-import HtmlTsInputDefaultDecorator from "../../Decorator/HtmlTsInputDefaultDecorator";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
+import HtmlTsInputDefaultDecorator from "../../Decorator/Default/HtmlTsInputDefaultDecorator";
 import {
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorBaseTypes
-} from "../../Decorator/HtmlTsInputDecoratorTypes";
-import HtmlTsInputValidatorResult from "../Validator/HtmlTsInputValidatorResult";
-import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
+} from "../../Decorator/Core/HtmlTsInputDecoratorTypes";
+import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements InterfaceHtmlTsInput<T> {
 

@@ -6,11 +6,11 @@ import {
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
 import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 import HtmlTsUtil from "../../../Core/HtmlTsUtil";
-import HtmlTsInputChoiceValidator from "../Validator/HtmlTsInputChoiceValidator";
+import HtmlTsInputChoiceValidator from "../../Validator/HtmlTsInputChoiceValidator";
 import HtmlTs from "../../../Core/HtmlTs";
 import htmlts from "../../../build";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
-import HtmlTsInputValidatorResult from "../Validator/HtmlTsInputValidatorResult";
+import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
 
 abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputBase<string[]> {
 

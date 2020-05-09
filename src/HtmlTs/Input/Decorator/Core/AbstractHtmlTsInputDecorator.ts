@@ -1,13 +1,13 @@
 import InterfaceHtmlTsInputDecorator from "./InterfaceHtmlTsInputDecorator";
-import HtmlTs from "../../Core/HtmlTs";
-import InterfaceHtmlTsInput from "../Elements/Core/InterfaceHtmlTsInput";
+import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInput from "../../Elements/Core/InterfaceHtmlTsInput";
 import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorTextTypes
 } from "./HtmlTsInputDecoratorTypes";
-import htmlts from "../../build";
-import HtmlTsInputValidatorResult from "../Elements/Validator/HtmlTsInputValidatorResult";
+import htmlts from "../../../build";
+import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
 
 abstract class AbstractHtmlTsInputDecorator<T extends HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorTextTypes | HtmlTsInputDecoratorChoiceTypes> implements InterfaceHtmlTsInputDecorator {
 

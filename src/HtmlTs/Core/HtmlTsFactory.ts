@@ -4,6 +4,7 @@ import HtmlTsUtil from "./HtmlTsUtil";
 import HtmlTsTableFactory from "../Table/HtmlTsTableFactory";
 import HtmlTsButtonFactory from "../Button/HtmlTsButtonFactory";
 import HtmlTsInputFactory from "../Input/HtmlTsInputFactory";
+import HtmlTsDictionary from "./HtmlTsDictionary";
 
 
 class HtmlTsFactory {
@@ -12,6 +13,7 @@ class HtmlTsFactory {
     table = new HtmlTsTableFactory();
     button = new HtmlTsButtonFactory();
     input = new HtmlTsInputFactory();
+    dictionary = HtmlTsDictionary;
 
     createById(id: string, options?: HtmlTsOptionType): HtmlTs {
         const htmlTs = new HtmlTs(document.getElementById(id));

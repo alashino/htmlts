@@ -1,9 +1,9 @@
-import AbstractHtmlTsInputDecorator from "./AbstractHtmlTsInputDecorator";
-import HtmlTs from "../../Core/HtmlTs";
-import InterfaceHtmlTsInput from "../Elements/Core/InterfaceHtmlTsInput";
-import {HtmlTsInputDecoratorBaseTypes} from "./HtmlTsInputDecoratorTypes";
-import htmlts from "../../build";
-import HtmlTsInputValidatorResult from "../Elements/Validator/HtmlTsInputValidatorResult";
+import AbstractHtmlTsInputDecorator from "../Core/AbstractHtmlTsInputDecorator";
+import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInput from "../../Elements/Core/InterfaceHtmlTsInput";
+import {HtmlTsInputDecoratorBaseTypes} from "../Core/HtmlTsInputDecoratorTypes";
+import htmlts from "../../../build";
+import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
 
 
 class HtmlTsInputDefaultDecorator extends AbstractHtmlTsInputDecorator<HtmlTsInputDecoratorBaseTypes> {
@@ -13,7 +13,7 @@ class HtmlTsInputDefaultDecorator extends AbstractHtmlTsInputDecorator<HtmlTsInp
             content: [
                 this.createLabel(htmlTsInput),
                 htmlTsInput.input,
-                this.createHelpText(htmlTsInput),
+                htmlts.create("div", this.createHelpText(htmlTsInput)),
                 htmlTsInput.validation,
             ],
         });

@@ -1,10 +1,10 @@
-import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
+import {HtmlTsInputValidatorBaseTypes} from "../../Validator/Core/HtmlTsInputValidatorTypes";
 import HtmlTs from "../../../Core/HtmlTs";
 import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorTextTypes
-} from "../../Decorator/HtmlTsInputDecoratorTypes";
+} from "../../Decorator/Core/HtmlTsInputDecoratorTypes";
 
 // input type
 export type HtmlTsInputSingleType = "hidden" | "text" | "password" | "textarea" | "select" | "radio";

@@ -7,8 +7,8 @@ import htmlts from "../../../build";
 import HtmlTs from "../../../Core/HtmlTs";
 import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
-import HtmlTsInputChoiceValidator from "../Validator/HtmlTsInputChoiceValidator";
-import {HtmlTsInputValidatorBaseTypes} from "../Validator/HtmlTsInputValidatorTypes";
+import HtmlTsInputChoiceValidator from "../../Validator/HtmlTsInputChoiceValidator";
+import {HtmlTsInputValidatorBaseTypes} from "../../Validator/Core/HtmlTsInputValidatorTypes";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
     validate?: HtmlTsInputValidatorBaseTypes;

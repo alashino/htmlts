@@ -1,10 +1,10 @@
-import AbstractHtmlTsInputDecoratorSet from "../../HtmlTs/Input/Decorator/AbstractHtmlTsInputDecoratorSet";
-import InterfaceHtmlTsInputDecorator from "../../HtmlTs/Input/Decorator/InterfaceHtmlTsInputDecorator";
+import AbstractHtmlTsInputDecoratorSet from "../../HtmlTs/Input/Decorator/Core/AbstractHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../../HtmlTs/Input/Decorator/Core/InterfaceHtmlTsInputDecorator";
 import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorTextTypes
-} from "../../HtmlTs/Input/Decorator/HtmlTsInputDecoratorTypes";
+} from "../../HtmlTs/Input/Decorator/Core/HtmlTsInputDecoratorTypes";
 import BootStrap4InputDecoratorText from "./BootStrap4InputDecoratorText";
 import BootStrap4InputDecoratorSelect from "./BootStrap4InputDecoratorSelect";
 import BootStrap4InputDecoratorChoice from "./BootStrap4InputDecoratorChoice";

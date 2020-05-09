@@ -2,9 +2,9 @@ import HtmlTs from "../../../Core/HtmlTs";
 import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType, HtmlTsInputStateType} from "./HtmlTsInputType";
 import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
-import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
-import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
-import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputValidator from "../../Validator/Core/InterfaceHtmlTsInputValidator";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<string> {
 
@@ -41,11 +41,13 @@ abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<st
     }
 
     set(value: string): void {
-        this.input.setAttr("value", value);
+        // @ts-ignore
+        this.input.htmlElement.value = value;
     }
 
     value(): string {
-        return this.input.getAttr("value");
+        // @ts-ignore
+        return this.input.htmlElement.value;
     }
 
 }

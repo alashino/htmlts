@@ -1,7 +1,15 @@
-import InterfaceHtmlTsInputValidator from "./InterfaceHtmlTsInputValidator";
-import HtmlTsInputValidatorResult from "./HtmlTsInputValidatorResult";
-import {HtmlTsInputValidatorBaseTypes} from "./HtmlTsInputValidatorTypes";
-import HtmlTsValidate from "../../../Validate/HtmlTsValidate";
+import InterfaceHtmlTsInputValidator from "./Core/InterfaceHtmlTsInputValidator";
+import HtmlTsInputValidatorResult from "./Core/HtmlTsInputValidatorResult";
+import {HtmlTsInputValidatorBaseTypes} from "./Core/HtmlTsInputValidatorTypes";
+import HtmlTsValidate from "../../Validate/HtmlTsValidate";
+
+export interface HtmlTsInputTextValidatorType extends HtmlTsInputValidatorBaseTypes {
+    // 自動でテスト
+    isNotNull?: boolean;
+    // 手動でテスト
+    minSelect?: number;
+    maxSelect?: number;
+}
 
 class HtmlTsInputChoiceValidator implements InterfaceHtmlTsInputValidator<string | string[]>{
 

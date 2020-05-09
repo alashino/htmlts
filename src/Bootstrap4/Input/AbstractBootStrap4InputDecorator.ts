@@ -2,12 +2,12 @@ import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorTextTypes
-} from "../../HtmlTs/Input/Decorator/HtmlTsInputDecoratorTypes";
+} from "../../HtmlTs/Input/Decorator/Core/HtmlTsInputDecoratorTypes";
 import InterfaceHtmlTsInput from "../../HtmlTs/Input/Elements/Core/InterfaceHtmlTsInput";
 import HtmlTs from "../../HtmlTs/Core/HtmlTs";
 import htmlts from "../../HtmlTs/build";
-import AbstractHtmlTsInputDecorator from "../../HtmlTs/Input/Decorator/AbstractHtmlTsInputDecorator";
-import HtmlTsInputValidatorResult from "../../HtmlTs/Input/Elements/Validator/HtmlTsInputValidatorResult";
+import AbstractHtmlTsInputDecorator from "../../HtmlTs/Input/Decorator/Core/AbstractHtmlTsInputDecorator";
+import HtmlTsInputValidatorResult from "../../HtmlTs/Input/Validator/Core/HtmlTsInputValidatorResult";
 
 abstract class AbstractBootStrap4InputDecorator<T extends HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorTextTypes | HtmlTsInputDecoratorChoiceTypes> extends AbstractHtmlTsInputDecorator<T> {
 

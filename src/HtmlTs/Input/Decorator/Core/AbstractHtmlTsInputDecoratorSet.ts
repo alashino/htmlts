@@ -1,6 +1,6 @@
 import InterfaceHtmlTsInputDecoratorSet from "./InterfaceHtmlTsInputDecoratorSet";
 import InterfaceHtmlTsInputDecorator from "./InterfaceHtmlTsInputDecorator";
-import HtmlTsInputDefaultDecorator from "./HtmlTsInputDefaultDecorator";
+import HtmlTsInputDefaultDecorator from "../Default/HtmlTsInputDefaultDecorator";
 import {
     HtmlTsInputDecoratorBaseTypes,
     HtmlTsInputDecoratorChoiceTypes,

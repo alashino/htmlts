@@ -3,8 +3,8 @@ import {HtmlTsInputArgsMultiValueType, HtmlTsInputChoiceType, HtmlTsInputMultiTy
 import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
 import HtmlTs from "../../../Core/HtmlTs";
-import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
-import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 
 export interface HtmlTsInputSelectMultiArgs extends HtmlTsInputArgsMultiValueType {

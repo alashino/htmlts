@@ -5,9 +5,9 @@ import {
 import AbstractHtmlTsInputSingleValueChoice from "../../Core/AbstractHtmlTsInputSingleValueChoice";
 import HtmlTsInputChoiceRadio from "../../Choice/HtmlTsInputChoiceRadio";
 import {TagNameTypes} from "../../../../Core/HtmlTsTypes";
-import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../../Core/HtmlTs";
-import InterfaceHtmlTsInputDecorator from "../../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputDecorator from "../../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputRadioArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
 }

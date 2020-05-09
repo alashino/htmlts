@@ -1,6 +1,6 @@
-import HtmlTs from "../../Core/HtmlTs";
-import InterfaceHtmlTsInput from "../Elements/Core/InterfaceHtmlTsInput";
-import HtmlTsInputValidatorResult from "../Elements/Validator/HtmlTsInputValidatorResult";
+import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInput from "../../Elements/Core/InterfaceHtmlTsInput";
+import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
 
 interface InterfaceHtmlTsInputDecorator {
 

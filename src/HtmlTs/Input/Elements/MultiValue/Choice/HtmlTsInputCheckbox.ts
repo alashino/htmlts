@@ -7,9 +7,9 @@ import {
 } from "../../Core/HtmlTsInputType";
 import HtmlTsInputChoiceCheckbox from "../../Choice/HtmlTsInputChoiceCheckbox";
 import {TagNameTypes} from "../../../../Core/HtmlTsTypes";
-import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../../Core/HtmlTs";
-import InterfaceHtmlTsInputDecorator from "../../../Decorator/InterfaceHtmlTsInputDecorator";
+import InterfaceHtmlTsInputDecorator from "../../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 
 export interface HtmlTsInputCheckboxArgs extends HtmlTsInputArgsMultiValueType {
