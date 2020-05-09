@@ -123,15 +123,21 @@ class HtmlTs {
         return false;
     }
 
-    removeClass(className: string): HtmlTs {
-        const results: string[] = [];
-        const currentClassNames: string[] = this.getCurrentClassNames();
-        const removeClassNames: string[] = this.splitClassNames(className);
-        for (const currentClassName of currentClassNames) {
-            if (HtmlTsUtil.array.in(currentClassName, removeClassNames)) continue;
-            results.push(currentClassName);
+    removeClass(className: string | string[]): HtmlTs {
+        if (className instanceof Array) {
+            className.forEach((cn) => {
+                this.removeClass(cn);
+            });
+        } else {
+            const results: string[] = [];
+            const currentClassNames: string[] = this.getCurrentClassNames();
+            const removeClassNames: string[] = this.splitClassNames(className);
+            for (const currentClassName of currentClassNames) {
+                if (HtmlTsUtil.array.in(currentClassName, removeClassNames)) continue;
+                results.push(currentClassName);
+            }
+            this.setAttribute("class", results.join(" "));
         }
-        this.setAttribute("class", results.join(" "));
         return this;
     }
 

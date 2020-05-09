@@ -39,10 +39,6 @@ abstract class AbstractHtmlTsInputText extends AbstractHtmlTsInputSingleValue {
         });
     }
 
-    validate(): boolean {
-        return true;
-    }
-
 }
 
 export default AbstractHtmlTsInputText;

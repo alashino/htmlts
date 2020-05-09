@@ -7,6 +7,7 @@ import HtmlTsInputChoiceRadio from "../../Choice/HtmlTsInputChoiceRadio";
 import {TagNameTypes} from "../../../../Core/HtmlTsTypes";
 import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../../Core/HtmlTs";
+import InterfaceHtmlTsInputDecorator from "../../../Decorator/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputRadioArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
 }
@@ -39,9 +40,8 @@ class HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice<HtmlTsInputC
         });
     }
 
-    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
-        const decorator = decoratorSet.radio(this.args.display);
-        return decorator.createHtml(this);
+    protected getDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): InterfaceHtmlTsInputDecorator {
+        return decoratorSet.radio(this.args.display);
     }
 
 }

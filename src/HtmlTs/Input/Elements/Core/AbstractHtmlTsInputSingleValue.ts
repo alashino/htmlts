@@ -4,6 +4,7 @@ import htmlts from "../../../build";
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
 import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
 import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
 
 abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<string> {
 
@@ -21,7 +22,7 @@ abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<st
         this.init_value = (args.value === undefined) ? "" : args.value + "";
     }
 
-    protected abstract getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs;
+    protected abstract getDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): InterfaceHtmlTsInputDecorator;
 
     protected createInput(): HtmlTs {
         const input = htmlts.create("input", {
@@ -45,12 +46,6 @@ abstract class AbstractHtmlTsInputSingleValue extends AbstractHtmlTsInputBase<st
 
     value(): string {
         return this.input.getAttr("value");
-    }
-
-    validate(): boolean {
-        const result: boolean = true;
-        // todo 実装
-        return result;
     }
 
 }

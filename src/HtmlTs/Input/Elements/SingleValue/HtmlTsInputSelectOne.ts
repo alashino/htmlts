@@ -7,6 +7,7 @@ import AbstractHtmlTsInputSingleValueChoice from "../Core/AbstractHtmlTsInputSin
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
 import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
 }
@@ -31,9 +32,8 @@ class HtmlTsInputSelectOne extends AbstractHtmlTsInputSingleValueChoice<HtmlTsIn
         );
     }
 
-    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
-        const decorator = decoratorSet.selectOne(this.args.display);
-        return decorator.createHtml(this);
+    protected getDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): InterfaceHtmlTsInputDecorator {
+        return decoratorSet.selectOne(this.args.display);
     }
 
 }

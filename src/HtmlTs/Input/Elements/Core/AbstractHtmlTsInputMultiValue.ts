@@ -10,6 +10,7 @@ import HtmlTsInputChoiceValidator from "../Validator/HtmlTsInputChoiceValidator"
 import HtmlTs from "../../../Core/HtmlTs";
 import htmlts from "../../../build";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
+import HtmlTsInputValidatorResult from "../Validator/HtmlTsInputValidatorResult";
 
 abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputBase<string[]> {
 
@@ -71,11 +72,6 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
         return results;
     }
 
-    validate(): boolean {
-        const result: boolean = true;
-        // todo 実装
-        return result;
-    }
 }
 
 export default AbstractHtmlTsInputMultiValue;

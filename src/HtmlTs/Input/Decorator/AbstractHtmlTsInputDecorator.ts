@@ -7,6 +7,7 @@ import {
     HtmlTsInputDecoratorTextTypes
 } from "./HtmlTsInputDecoratorTypes";
 import htmlts from "../../build";
+import HtmlTsInputValidatorResult from "../Elements/Validator/HtmlTsInputValidatorResult";
 
 abstract class AbstractHtmlTsInputDecorator<T extends HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorTextTypes | HtmlTsInputDecoratorChoiceTypes> implements InterfaceHtmlTsInputDecorator {
 
@@ -17,6 +18,8 @@ abstract class AbstractHtmlTsInputDecorator<T extends HtmlTsInputDecoratorBaseTy
     }
 
     abstract createHtml(htmlTsInput: InterfaceHtmlTsInput<any>): HtmlTs;
+
+    abstract validateHtmlThen(htmlTsInput: InterfaceHtmlTsInput<string | string[]>, validateResult: HtmlTsInputValidatorResult): void;
 
     protected createLabel(htmlTsInput: InterfaceHtmlTsInput<any>): HtmlTs | undefined {
         if (htmlTsInput.labelContent === undefined) return undefined;
@@ -31,6 +34,7 @@ abstract class AbstractHtmlTsInputDecorator<T extends HtmlTsInputDecoratorBaseTy
             content: htmlTsInput.helpTextContent,
         });
     }
+
 }
 
 export default AbstractHtmlTsInputDecorator;

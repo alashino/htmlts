@@ -7,6 +7,7 @@ import InterfaceHtmlTsInput from "../../HtmlTs/Input/Elements/Core/InterfaceHtml
 import HtmlTs from "../../HtmlTs/Core/HtmlTs";
 import htmlts from "../../HtmlTs/build";
 import AbstractHtmlTsInputDecorator from "../../HtmlTs/Input/Decorator/AbstractHtmlTsInputDecorator";
+import HtmlTsInputValidatorResult from "../../HtmlTs/Input/Elements/Validator/HtmlTsInputValidatorResult";
 
 abstract class AbstractBootStrap4InputDecorator<T extends HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorTextTypes | HtmlTsInputDecoratorChoiceTypes> extends AbstractHtmlTsInputDecorator<T> {
 
@@ -84,6 +85,39 @@ abstract class AbstractBootStrap4InputDecorator<T extends HtmlTsInputDecoratorBa
         }
         return classNames;
     }
+
+    validateHtmlThen(htmlTsInput: InterfaceHtmlTsInput<string | string[]>, validateResult: HtmlTsInputValidatorResult): void {
+        htmlTsInput.validation.removeClass(["valid-feedback", "invalid-feedback"]).empty();
+        if (validateResult.result) {
+            this.validationSuccessThen(htmlTsInput);
+        } else {
+            this.validationErrorThen(htmlTsInput, validateResult.messages);
+        }
+    }
+
+    private validationSuccessThen(htmlTsInput: InterfaceHtmlTsInput<string | string[]>): void {
+        htmlTsInput.validation.addClass("valid-feedback");
+        this.validationSuccessThenInput(htmlTsInput);
+    }
+
+    protected validationSuccessThenInput(htmlTsInput: InterfaceHtmlTsInput<string | string[]>): void {
+        htmlTsInput.input.removeClass(["is-invalid"]).addClass("is-valid");
+    }
+
+    private validationErrorThen(htmlTsInput: InterfaceHtmlTsInput<string | string[]>, messages: string[]): void {
+        htmlTsInput.validation.addClass("invalid-feedback");
+        messages.forEach((message) => {
+            htmlTsInput.validation.append(
+                htmlts.create("p", message)
+            );
+        });
+        this.validationErrorThenInput(htmlTsInput);
+    }
+
+    protected validationErrorThenInput(htmlTsInput: InterfaceHtmlTsInput<string | string[]>): void {
+        htmlTsInput.input.removeClass(["is-valid"]).addClass("is-invalid");
+    }
+
 }
 
 export default AbstractBootStrap4InputDecorator;

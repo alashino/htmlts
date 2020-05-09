@@ -59,10 +59,6 @@ abstract class AbstractHtmlTsInputSingleValueChoice<T extends InterfaceHtmlTsInp
         return "";
     }
 
-    validate(): boolean {
-        return true;
-    }
-
 }
 
 export default AbstractHtmlTsInputSingleValueChoice;

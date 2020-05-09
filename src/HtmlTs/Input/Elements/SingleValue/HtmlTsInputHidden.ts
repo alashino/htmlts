@@ -3,6 +3,7 @@ import {HtmlTsInputArgsSingleValueType, HtmlTsInputSingleType} from "../Core/Htm
 import InterfaceHtmlTsInputValidator from "../Validator/InterfaceHtmlTsInputValidator";
 import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/InterfaceHtmlTsInputDecoratorSet";
 import HtmlTs from "../../../Core/HtmlTs";
+import InterfaceHtmlTsInputDecorator from "../../Decorator/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputHiddenArgs extends HtmlTsInputArgsSingleValueType {
     isClearable?: boolean; // clearできるかどうか。defaultはfalse
@@ -28,12 +29,12 @@ class HtmlTsInputHidden extends AbstractHtmlTsInputSingleValue {
     }
 
     validate(): boolean {
+        // hiddenはvalidateしない
         return true;
     }
 
-    protected getHtmlByDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): HtmlTs {
-        const decorator = decoratorSet.hidden(this.args.display);
-        return decorator.createHtml(this);
+    protected getDecorator(decoratorSet: InterfaceHtmlTsInputDecoratorSet): InterfaceHtmlTsInputDecorator {
+        return decoratorSet.hidden(this.args.display);
     }
 
 }
