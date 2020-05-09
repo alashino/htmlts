@@ -54,8 +54,14 @@
                 {
                     value: "value5",
                     label: "label5"
-                },
-            ]
+                }
+            ],
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                minSelect: 1,
+                maxSelect: 3
+            }
         });
         inputController.subscribe(input_enable);
         htmlts.createById("root").append(input_enable.html);
@@ -86,7 +92,7 @@
                 {
                     value: "value5",
                     label: "label5"
-                },
+                }
             ]
         });
         inputController.subscribe(input_readonly);

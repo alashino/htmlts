@@ -11,6 +11,10 @@ class HtmlTsInputDictionaryClass extends AbstractHtmlTsDictionary {
             "isFloat": "少数で入力してください",
             "isLengthOrMoreText": "%s文字以上で入力してください",
             "isLengthOrLessText": "%s文字以下で入力してください",
+            // choice
+            "choiceIsNotNull": "選択必須項目です",
+            "choiceMinSelect": "%s個以上選択してください",
+            "choiceMaxSelect": "%s個以下で選択してください",
         },
         "en": {
             "isNotNull": "This Field is Required",
@@ -19,6 +23,10 @@ class HtmlTsInputDictionaryClass extends AbstractHtmlTsDictionary {
             "isFloat": "入力必須項目です",
             "isLengthOrMoreText": "%s文字以上で入力してください",
             "isLengthOrLessText": "%s文字以下で入力してください",
+            // choice
+            "choiceIsNotNull": "選択必須項目です",
+            "choiceMinSelect": "%s個以上選択してください",
+            "choiceMaxSelect": "%s個以下で選択してください",
         },
     };
 

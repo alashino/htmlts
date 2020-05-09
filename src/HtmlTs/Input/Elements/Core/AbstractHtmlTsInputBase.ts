@@ -1,7 +1,7 @@
 import InterfaceHtmlTsInput from "./InterfaceHtmlTsInput";
 import HtmlTs from "../../../Core/HtmlTs";
 import {
-    HtmlTsInputArgsBaseType,
+    HtmlTsInputArgsBaseType, HtmlTsInputArgsFunctionsType,
     HtmlTsInputStateType,
     HtmlTsInputType
 } from "./HtmlTsInputType";
@@ -14,7 +14,6 @@ import {
     HtmlTsInputDecoratorChoiceTypes,
     HtmlTsInputDecoratorBaseTypes
 } from "../../Decorator/Core/HtmlTsInputDecoratorTypes";
-import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
 import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements InterfaceHtmlTsInput<T> {
@@ -31,13 +30,15 @@ abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements I
     helpTextContent: string | HtmlTs;
 
     abstract type: HtmlTsInputType;
-
     protected abstract validator: InterfaceHtmlTsInputValidator<T>;
+
     protected validateParam: HtmlTsInputValidatorBaseTypes;
     protected displayParam: HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorChoiceTypes;
 
     state: HtmlTsInputStateType;
     init_value: T;
+
+    protected functions: HtmlTsInputArgsFunctionsType<AbstractHtmlTsInputBase<T>>;
 
     protected constructor(args: HtmlTsInputArgsBaseType<T>) {
         this.name = args.name;
@@ -46,6 +47,7 @@ abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements I
         this.labelContent = args.label;
         this.helpTextContent = args.helpText;
         this.displayParam = args.display;
+        this.functions = args.functions;
     }
 
     protected build(): void {
@@ -85,6 +87,20 @@ abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements I
             decorator = new HtmlTsInputDefaultDecorator(this.displayParam);
         }
         decorator.validateHtmlThen(this, validatorResult);
+        if (this.functions !== undefined) {
+            if (validatorResult.result &&
+                this.functions.validateSuccess === undefined &&
+                typeof this.functions.validateSuccess === "function"
+            ) {
+                this.functions.validateSuccess(this);
+            }
+            if (!validatorResult.result &&
+                this.functions.validateError === undefined &&
+                typeof this.functions.validateError === "function"
+            ) {
+                this.functions.validateError(this);
+            }
+        }
         return validatorResult.result;
     }
 
@@ -99,6 +115,12 @@ abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements I
     }
 
     protected whenValueChanged(): void {
+        if (this.functions !== undefined &&
+            this.functions.valueChanged !== undefined &&
+            typeof this.functions.valueChanged === "function"
+        ) {
+            this.functions.valueChanged(this);
+        }
         if (this.validator !== undefined &&
             this.validateParam !== undefined &&
             this.validateParam.realTimeValidate

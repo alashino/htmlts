@@ -6,11 +6,10 @@ import {
 import AbstractHtmlTsInputBase from "./AbstractHtmlTsInputBase";
 import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 import HtmlTsUtil from "../../../Core/HtmlTsUtil";
-import HtmlTsInputChoiceValidator from "../../Validator/HtmlTsInputChoiceValidator";
 import HtmlTs from "../../../Core/HtmlTs";
 import htmlts from "../../../build";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
-import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidatorResult";
+import HtmlTsInputChoiceValidatorMulti from "../../Validator/HtmlTsInputChoiceValidatorMulti";
 
 abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputBase<string[]> {
 
@@ -21,7 +20,7 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
     abstract type: HtmlTsInputMultiType;
     protected abstract inputTagName: TagNameTypes;
 
-    protected validator: HtmlTsInputChoiceValidator;
+    protected validator: HtmlTsInputChoiceValidatorMulti;
 
     protected args: HtmlTsInputArgsMultiValueType;
     protected choiceValues: HtmlTsInputChoiceType[] = [];
@@ -32,7 +31,7 @@ abstract class AbstractHtmlTsInputMultiValue<T extends InterfaceHtmlTsInputChoic
         this.name = args.name;
         this.init_value = args.value || [];
         this.choiceValues = args.choice || [];
-        this.validator = new HtmlTsInputChoiceValidator(args.validate);
+        this.validator = new HtmlTsInputChoiceValidatorMulti(args.validate);
     }
 
     protected createInput(): HtmlTs {

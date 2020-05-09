@@ -33,7 +33,7 @@
     (function () {
         const input_enable = htmlts.input.radio({
             name: "input_enable",
-            value: "value2",
+            value: "",
             choice: [
                 {
                     value: "value1",
@@ -47,7 +47,11 @@
                     value: "value3",
                     label: "label3"
                 },
-            ]
+            ],
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+            }
         });
         inputController.subscribe(input_enable);
         htmlts.createById("root").append(input_enable.html);

@@ -44,7 +44,6 @@ abstract class AbstractBootStrap4InputDecorator<T extends HtmlTsInputDecoratorBa
             content: [
                 this.createHorizontalLabel(htmlTsInput),
                 this.createHorizontalInput(htmlTsInput),
-
             ],
         });
     }
@@ -108,7 +107,12 @@ abstract class AbstractBootStrap4InputDecorator<T extends HtmlTsInputDecoratorBa
         htmlTsInput.validation.addClass("invalid-feedback");
         messages.forEach((message) => {
             htmlTsInput.validation.append(
-                htmlts.create("p", message)
+                htmlts.create("span", {
+                    css: {
+                        "display": "block",
+                    },
+                    content: message,
+                })
             );
         });
         this.validationErrorThenInput(htmlTsInput);

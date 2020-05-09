@@ -7,7 +7,7 @@ import htmlts from "../../../build";
 import HtmlTs from "../../../Core/HtmlTs";
 import InterfaceHtmlTsInputChoice from "../Choice/InterfaceHtmlTsInputChoice";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
-import HtmlTsInputChoiceValidator from "../../Validator/HtmlTsInputChoiceValidator";
+import HtmlTsInputChoiceValidatorSingle from "../../Validator/HtmlTsInputChoiceValidatorSingle";
 import {HtmlTsInputValidatorBaseTypes} from "../../Validator/Core/HtmlTsInputValidatorTypes";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
@@ -18,7 +18,7 @@ abstract class AbstractHtmlTsInputSingleValueChoice<T extends InterfaceHtmlTsInp
 
     choice: T[] = [];
 
-    validator: HtmlTsInputChoiceValidator;
+    validator: HtmlTsInputChoiceValidatorSingle;
 
     protected choiceValues: HtmlTsInputChoiceType[] = [];
     protected abstract inputTagName: TagNameTypes;
@@ -26,7 +26,7 @@ abstract class AbstractHtmlTsInputSingleValueChoice<T extends InterfaceHtmlTsInp
     protected constructor(args: HtmlTsInputSelectOneArgs) {
         super(args);
         this.choiceValues = args.choice || [];
-        this.validator = new HtmlTsInputChoiceValidator(args.validate);
+        this.validator = new HtmlTsInputChoiceValidatorSingle(args.validate);
     }
 
     protected abstract createChoice(choice: HtmlTsInputChoiceType): T;

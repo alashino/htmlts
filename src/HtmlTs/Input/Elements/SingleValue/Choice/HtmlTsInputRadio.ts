@@ -33,6 +33,14 @@ class HtmlTsInputRadio extends AbstractHtmlTsInputSingleValueChoice<HtmlTsInputC
         });
     }
 
+    protected setOnChange() {
+        this.choice.forEach((choice) => {
+            choice.htmlInput.on("change", (html) => {
+                this.whenValueChanged();
+            });
+        })
+    }
+
     changeState(state: HtmlTsInputStateType): void {
         this.state = state;
         this.choice.forEach((choice) => {

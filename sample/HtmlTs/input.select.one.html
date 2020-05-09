@@ -36,6 +36,10 @@
             value: "value2",
             choice: [
                 {
+                    value: "",
+                    label: "選択してください"
+                },
+                {
                     value: "value1",
                     label: "label1"
                 },
@@ -47,7 +51,11 @@
                     value: "value3",
                     label: "label3"
                 },
-            ]
+            ],
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true
+            }
         });
         inputController.subscribe(input_enable);
         htmlts.createById("root").append(input_enable.html);

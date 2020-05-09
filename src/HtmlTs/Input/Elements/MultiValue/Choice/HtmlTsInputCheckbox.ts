@@ -8,7 +8,6 @@ import {
 import HtmlTsInputChoiceCheckbox from "../../Choice/HtmlTsInputChoiceCheckbox";
 import {TagNameTypes} from "../../../../Core/HtmlTsTypes";
 import InterfaceHtmlTsInputDecoratorSet from "../../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
-import HtmlTs from "../../../../Core/HtmlTs";
 import InterfaceHtmlTsInputDecorator from "../../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 
@@ -33,6 +32,14 @@ class HtmlTsInputCheckbox extends AbstractHtmlTsInputMultiValue<HtmlTsInputChoic
             title: choice.title,
             state: this.state,
         });
+    }
+
+    protected setOnChange() {
+        this.choice.forEach((choice) => {
+            choice.htmlInput.on("change", (html) => {
+                this.whenValueChanged();
+            });
+        })
     }
 
     changeState(state: HtmlTsInputStateType): void {

@@ -26,10 +26,18 @@ class BootStrap4InputDecoratorSelect extends AbstractBootStrap4InputDecorator<Ht
         ) {
             return htmlts.create("div", {
                 class: this.getInputGroupClassName(),
-                content: htmlTsInput.input,
+                content: [
+                    htmlTsInput.input,
+                    htmlTsInput.validation,
+                ],
             });
         } else {
-            return htmlTsInput.input;
+            return htmlts.create("div", {
+                content: [
+                    htmlTsInput.input,
+                    htmlTsInput.validation,
+                ],
+            });
         }
     }
 

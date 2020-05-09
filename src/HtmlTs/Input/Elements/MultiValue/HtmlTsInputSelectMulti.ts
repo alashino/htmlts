@@ -8,12 +8,14 @@ import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsI
 
 
 export interface HtmlTsInputSelectMultiArgs extends HtmlTsInputArgsMultiValueType {
+    size?: number; // 選択肢のサイズ
 }
 
 class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOption> {
 
     type: HtmlTsInputMultiType = "select";
     protected inputTagName: TagNameTypes = "select";
+    protected args: HtmlTsInputSelectMultiArgs;
 
     constructor(args: HtmlTsInputSelectMultiArgs) {
         super(args);
@@ -23,6 +25,11 @@ class HtmlTsInputSelectMulti extends AbstractHtmlTsInputMultiValue<HtmlTsInputOp
     protected createInput(): HtmlTs {
         const input = super.createInput();
         input.setAttr("multiple", "true");
+        if (this.args.size !== undefined) {
+            input.setAttr("size", `${this.args.size}`);
+        } else {
+            input.setAttr("size", `${this.choiceValues.length}`);
+        }
         return input;
     }
 

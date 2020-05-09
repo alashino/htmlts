@@ -41,7 +41,7 @@
             label: "enable label",
             helpText: "this is help text",
             name: "input_enable",
-            value: ["value2"],
+            value: ["value2", "value4"],
             choice: [
                 {
                     value: "value1",
@@ -67,6 +67,17 @@
             display: {
                 size: "l", // default m
                 inputColumnSize: 5 // default undefined
+            },
+            functions: {
+                valueChanged: (input) => {
+                    console.log(input);
+                },
+            },
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                minSelect: 1,
+                maxSelect: 3
             }
         });
         inputController.subscribe(input_enable);
@@ -105,6 +116,17 @@
                 size: "l", // default m
                 inputColumnSize: 5, // default undefined,
                 choiceDisplay: "inline"
+            },
+            functions: {
+                valueChanged: (input) => {
+                    console.log(input);
+                },
+            },
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                minSelect: 1,
+                maxSelect: 3
             }
         });
         inputController.subscribe(input_inline);

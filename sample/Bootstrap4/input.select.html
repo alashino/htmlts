@@ -44,6 +44,10 @@
             value: "value2",
             choice: [
                 {
+                    value: "",
+                    label: "選択してください"
+                },
+                {
                     value: "value1",
                     label: "label1"
                 },
@@ -59,6 +63,62 @@
             display: {
                 size: "l", // default m
                 inputColumnSize: 5 // default undefined
+            },
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true
+            }
+        });
+        inputController.subscribe(input_enable);
+        htmlts.createById("root").append(input_enable.html);
+    })();
+
+    (function () {
+        const input_enable = htmlts.input.selectMulti({
+            label: "enable label",
+            helpText: "this is help text",
+            name: "input_enable",
+            value: ["value2", "value4"],
+            size: 5,
+            choice: [
+                {
+                    value: "",
+                    label: "選択してください"
+                },
+                {
+                    value: "value1",
+                    label: "label1"
+                },
+                {
+                    value: "value2",
+                    label: "label2"
+                },
+                {
+                    value: "value3",
+                    label: "label3"
+                },
+                {
+                    value: "value4",
+                    label: "label4"
+                },
+                {
+                    value: "value5",
+                    label: "label5"
+                },
+            ],
+            display: {
+                 inputColumnSize: 5, // default undefined
+            },
+            functions: {
+                valueChanged: (input) => {
+                    console.log(input);
+                },
+            },
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                minSelect: 2,
+                maxSelect: 4
             }
         });
         inputController.subscribe(input_enable);

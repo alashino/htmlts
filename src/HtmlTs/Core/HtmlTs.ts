@@ -16,9 +16,9 @@ class HtmlTs {
     // 要素の追加、削除
     //
     empty(): HtmlTs {
-        if (!this.htmlElement.hasChildNodes()) return this;
-        for (const childNode of this.htmlElement.childNodes) {
-            this.htmlElement.removeChild(childNode);
+        // for系でまわすと最後までまわらないのでwhile
+        while (this.htmlElement.hasChildNodes()) {
+            this.htmlElement.childNodes[0].remove();
         }
         return this;
     }

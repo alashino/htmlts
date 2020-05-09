@@ -8,7 +8,7 @@ import HtmlTsInputValidatorResult from "../../Validator/Core/HtmlTsInputValidato
 
 class HtmlTsInputDefaultDecorator extends AbstractHtmlTsInputDecorator<HtmlTsInputDecoratorBaseTypes> {
 
-    createHtml(htmlTsInput: InterfaceHtmlTsInput<any>): HtmlTs {
+    createHtml(htmlTsInput: InterfaceHtmlTsInput<string | string[]>): HtmlTs {
         return htmlts.create("div", {
             content: [
                 this.createLabel(htmlTsInput),

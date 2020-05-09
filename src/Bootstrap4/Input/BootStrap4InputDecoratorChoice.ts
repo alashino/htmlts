@@ -6,6 +6,7 @@ import htmlts from "../../HtmlTs/build";
 import AbstractBootStrap4InputDecorator from "./AbstractBootStrap4InputDecorator";
 import AbstractHtmlTsInputSingleValueChoice
     from "../../HtmlTs/Input/Elements/Core/AbstractHtmlTsInputSingleValueChoice";
+import InterfaceHtmlTsInput from "../../HtmlTs/Input/Elements/Core/InterfaceHtmlTsInput";
 
 let seq = 0;
 
@@ -36,7 +37,21 @@ class BootStrap4InputDecoratorChoice extends AbstractBootStrap4InputDecorator<Ht
                         choice.htmlLabel.addClass("form-check-label").setAttr("for", id),
                     ],
                 });
-            }),
+            }).concat(htmlTsInput.validation),
+        });
+    }
+
+    protected validationSuccessThenInput(htmlTsInput: AbstractHtmlTsInputSingleValueChoice<any>): void {
+        htmlTsInput.validation.css("display", "");
+        htmlTsInput.choice.forEach((choice) => {
+           choice.htmlInput.removeClass(["is-invalid"]).addClass("is-valid");
+        });
+    }
+
+    protected validationErrorThenInput(htmlTsInput: AbstractHtmlTsInputSingleValueChoice<any>): void {
+        htmlTsInput.validation.css("display", "block");
+        htmlTsInput.choice.forEach((choice) => {
+            choice.htmlInput.removeClass(["is-valid"]).addClass("is-invalid");
         });
     }
 

@@ -34,6 +34,7 @@
         const input_enable = htmlts.input.selectMulti({
             name: "input_enable",
             value: ["value2", "value4"],
+            size: 4, // 選択肢の大きさ（multiのみ）
             choice: [
                 {
                     value: "value1",
@@ -55,7 +56,13 @@
                     value: "value5",
                     label: "label5"
                 },
-            ]
+            ],
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                minSelect: 1,
+                maxSelect: 3
+            }
         });
         inputController.subscribe(input_enable);
         htmlts.createById("root").append(input_enable.html);

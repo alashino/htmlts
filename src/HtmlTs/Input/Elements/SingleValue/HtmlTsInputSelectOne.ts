@@ -6,7 +6,6 @@ import HtmlTsInputOption from "../Choice/HtmlTsInputOption";
 import AbstractHtmlTsInputSingleValueChoice from "../Core/AbstractHtmlTsInputSingleValueChoice";
 import {TagNameTypes} from "../../../Core/HtmlTsTypes";
 import InterfaceHtmlTsInputDecoratorSet from "../../Decorator/Core/InterfaceHtmlTsInputDecoratorSet";
-import HtmlTs from "../../../Core/HtmlTs";
 import InterfaceHtmlTsInputDecorator from "../../Decorator/Core/InterfaceHtmlTsInputDecorator";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
