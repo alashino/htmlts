@@ -4,7 +4,7 @@ import HtmlTsValidateArray from "../../Validate/HtmlTsValidateArray";
 import AbstractHtmlTsInputValidator from "./Core/AbstractHtmlTsInputValidator";
 import HtmlTsInputDictionary from "../HtmlTsInputDictionary";
 
-export interface HtmlTsInputChoiceValidatorMultiType extends HtmlTsInputValidatorBaseTypes {
+export interface HtmlTsInputChoiceValidatorMultiType extends HtmlTsInputValidatorBaseTypes<string[]> {
     // 自動でテスト
     isNotNull?: boolean;
     // 手動でテスト
@@ -27,11 +27,10 @@ class HtmlTsInputChoiceValidatorMulti extends AbstractHtmlTsInputValidator<strin
         "isNotNull": false,
     };
 
-    private readonly params: HtmlTsInputChoiceValidatorMultiType;
+    protected params: HtmlTsInputChoiceValidatorMultiType;
 
     constructor(params: HtmlTsInputChoiceValidatorMultiType) {
-        super();
-        this.params = params;
+        super(params);
         if (this.params === undefined) return;
         if (this.params.isNotNull !== undefined) this.isTest["isNotNull"] = this.params.isNotNull;
     }

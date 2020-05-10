@@ -61,6 +61,7 @@ touch tsconfig.json
 
 avaを使います。
 package.jsonに追記。
+※つかおうと思ってたけどなんかうまくいかないので放置してる。
 
 ```json
     "ava": {

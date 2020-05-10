@@ -17,11 +17,8 @@ class HtmlTsInputChoiceValidatorSingle extends AbstractHtmlTsInputValidator<stri
         "isNotNull": false,
     };
 
-    private params: HtmlTsInputValidatorBaseTypes;
-
-    constructor(params: HtmlTsInputValidatorBaseTypes) {
-        super();
-        this.params = params;
+    constructor(params: HtmlTsInputValidatorBaseTypes<string>) {
+        super(params);
         if (this.params === undefined) return;
         if (this.params.isNotNull !== undefined) this.isTest["isNotNull"] = this.params.isNotNull;
     }

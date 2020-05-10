@@ -6,7 +6,9 @@ class HtmlTsInputValidatorResult {
     append(result: boolean, message: string): void {
         if (result) return;
         this.result = false;
-        this.messages.push(message);
+        if (message !== undefined && message !== "") {
+            this.messages.push(message);
+        }
     }
 }
 

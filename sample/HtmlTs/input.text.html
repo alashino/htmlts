@@ -64,6 +64,57 @@
     })();
 
     (function () {
+        const input = htmlts.input.text({
+            name: "input_email",
+            value: "mail@sample.com",
+            placeHolder: "E-mail Address",
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                isEmail: true
+            }
+        });
+        inputController.subscribe(input);
+        htmlts.createById("root").append(input.html);
+    })();
+
+    (function () {
+        const input = htmlts.input.text({
+            name: "input_url",
+            value: "https://hoge.com/index.html",
+            placeHolder: "Url format",
+            validate: {
+                realTimeValidate: true,
+                isNotNull: true,
+                isUrl: true
+            }
+        });
+        inputController.subscribe(input);
+        htmlts.createById("root").append(input.html);
+    })();
+
+    (function () {
+        const input = htmlts.input.text({
+            name: "input_url",
+            value: "",
+            placeHolder: "Custom Rule",
+            validate: {
+                realTimeValidate: true,
+                custom: [
+                    {
+                        test: (value) => {
+                            return (value === "hoge");
+                        },
+                        message: "それはhogeじゃない！"
+                    }
+                ]
+            }
+        });
+        inputController.subscribe(input);
+        htmlts.createById("root").append(input.html);
+    })();
+
+    (function () {
         const input_readonly = htmlts.input.text({
             name: "input_readonly",
             value: "input_readonly_value",

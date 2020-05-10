@@ -11,7 +11,7 @@ import HtmlTsInputChoiceValidatorSingle from "../../Validator/HtmlTsInputChoiceV
 import {HtmlTsInputValidatorBaseTypes} from "../../Validator/Core/HtmlTsInputValidatorTypes";
 
 export interface HtmlTsInputSelectOneArgs extends HtmlTsInputArgsSingleValueHasChildrenType {
-    validate?: HtmlTsInputValidatorBaseTypes;
+    validate?: HtmlTsInputValidatorBaseTypes<string>;
 }
 
 abstract class AbstractHtmlTsInputSingleValueChoice<T extends InterfaceHtmlTsInputChoice> extends AbstractHtmlTsInputSingleValue {

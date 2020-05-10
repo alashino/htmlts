@@ -31,10 +31,16 @@ class BootStrap4InputDecoratorText extends AbstractBootStrap4InputDecorator<Html
                     this.createInputAddon("input-group-prepend", this.params.addonLeft),
                     htmlTsInput.input,
                     this.createInputAddon("input-group-append", this.params.addonRight),
+                    htmlTsInput.validation,
                 ],
             });
         } else {
-            return htmlTsInput.input;
+            return htmlts.create("div", {
+                content: [
+                    htmlTsInput.input,
+                    htmlTsInput.validation,
+                ],
+            });
         }
     }
 

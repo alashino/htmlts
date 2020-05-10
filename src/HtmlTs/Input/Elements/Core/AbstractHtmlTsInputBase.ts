@@ -32,7 +32,7 @@ abstract class AbstractHtmlTsInputBase<T extends string | string[]> implements I
     abstract type: HtmlTsInputType;
     protected abstract validator: InterfaceHtmlTsInputValidator<T>;
 
-    protected validateParam: HtmlTsInputValidatorBaseTypes;
+    protected validateParam: HtmlTsInputValidatorBaseTypes<T>;
     protected displayParam: HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorChoiceTypes;
 
     state: HtmlTsInputStateType;

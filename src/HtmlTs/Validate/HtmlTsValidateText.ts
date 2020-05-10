@@ -52,8 +52,6 @@ const HtmlTsValidateText = {
     /**
      * 整数かどうか
      * 先頭が0は許さない
-     * @param {string} value
-     * @returns {boolean}
      */
     isInteger: (value: string): boolean => {
         if (!HtmlTsValidateText.isNotNull(value)) return true;
@@ -63,8 +61,6 @@ const HtmlTsValidateText = {
     /**
      * 正の整数かどうか
      * 先頭が0は許さない
-     * @param {string} value
-     * @returns {boolean}
      */
     isDecimal: (value: string): boolean => {
         if (!HtmlTsValidateText.isNotNull(value)) return true;
@@ -73,28 +69,11 @@ const HtmlTsValidateText = {
 
     /**
      * 小数値かどうか
-     * @param {string} value_in
-     * @param {int|undefined} precision 桁数。指定しない場合はundefinedでおｋ。
-     * @returns {boolean}
      */
-    isFloat: (value: string, precision: number = undefined): boolean => {
+    isFloat: (value: string): boolean => {
         if (!HtmlTsValidateText.isNotNull(value)) return true;
         // 表現をチェック
-        let result = HtmlTsValidateText.isMatchRegexp(validate_const.regexp.float, value);
-        // 桁数をチェック
-        // todo おそらく正規表現でいける。
-        // if (result && HtmlTsValidateText.isNotNull(precision) && HtmlTsValidateText.Is(precision)) {
-        //     // Float型の時で桁数が指定されている時
-        //     const arr = value.split(".");
-        //     if (arr.length === 2) {
-        //         const prec = arr[1];
-        //         if (prec.length > precision) {
-        //             // 桁数チェックでアウト
-        //             result = false;
-        //         }
-        //     }
-        // }
-        return result;
+        return HtmlTsValidateText.isMatchRegexp(validate_const.regexp.float, value);
     },
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

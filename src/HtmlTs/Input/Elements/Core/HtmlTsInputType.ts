@@ -35,7 +35,7 @@ export interface HtmlTsInputArgsBaseType<T extends string | string[]> {
     helpText?: string | HtmlTs;
     functions?: HtmlTsInputArgsFunctionsType<AbstractHtmlTsInputBase<T>>;
     // validate
-    validate?: HtmlTsInputValidatorBaseTypes;
+    validate?: HtmlTsInputValidatorBaseTypes<T>;
     // layout
     display?: HtmlTsInputDecoratorBaseTypes | HtmlTsInputDecoratorTextTypes | HtmlTsInputDecoratorChoiceTypes;
 }
