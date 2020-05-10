@@ -1,0 +1,31 @@
+{
+  "name": "htmlts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -r ts-node/register ./test/**/*.ts",
+    "build_htmlts_develop": "./node_modules/.bin/webpack --config webpack.config.htmlts.develop.js",
+    "build_htmlts_product": "./node_modules/.bin/webpack --config webpack.config.htmlts.product.js",
+    "build_bootstrap4_develop": "./node_modules/.bin/webpack --config webpack.config.bootstrap4.develop.js",
+    "build_bootstrap4_product": "./node_modules/.bin/webpack --config webpack.config.bootstrap4.product.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^7.1.2",
+    "postinstall-build": "^5.0.3",
+    "remap-istanbul": "^0.13.0",
+    "ts-loader": "^6.2.2",
+    "ts-node": "^8.10.1",
+    "typemoq": "^2.1.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
+  }
+}

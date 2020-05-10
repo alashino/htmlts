@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HtmlTs:Bootstrap4 Button</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="../../dest/htmlts.js"></script>
+    <script src="../../dest/htmltsBootstrap4.js"></script>
+</head>
+<body>
+<h1>HtmlTs:Bootstrap4 Button</h1>
+<p>
+    please check this html source code!
+</p>
+<p>
+    使い方はコードをみてください！
+</p>
+
+<hr/>
+
+<div id="default">
+    <h2>Default</h2>
+</div>
+
+<hr/>
+
+<div id="variation">
+    <h2>Type Variation</h2>
+</div>
+
+<hr/>
+
+<div id="outline">
+    <h2>Outline</h2>
+</div>
+
+<hr/>
+
+<div id="">
+    <h2>Change Default</h2>
+    <p>
+        もしデフォルトのタイプをOutlineにしたい場合は下記のcodeでデフォルトのデコレータを変更できます。
+    </p>
+    <code>htmlts.button.setDecorator(htmltsBootstrap4.button.outline);</code>
+</div>
+
+<hr/>
+
+<div id="size">
+    <h2>Size Variation</h2>
+    <p>サイズ展開はBootstrap4に依存します。</p>
+</div>
+
+
+</body>
+</html>
+<script>
+
+    (function () {
+        htmlts.createById("default").append(
+            htmlts.button.create({
+                content: "default",
+                click: () => {
+                    console.log("default button clicked!");
+                }
+            })
+        );
+    })();
+
+    (function () {
+        htmlts.createById("variation").append(
+            htmlts.button.create({
+                type: "default",
+                content: "default",
+                click: () => {
+                    console.log("default button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "primary",
+                content: "primary",
+                click: () => {
+                    console.log("primary button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "secondary",
+                content: "secondary",
+                click: () => {
+                    console.log("secondary button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "danger",
+                content: "danger",
+                click: () => {
+                    console.log("danger button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "warning",
+                content: "warning",
+                click: () => {
+                    console.log("warning button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "info",
+                content: "info",
+                click: () => {
+                    console.log("info button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "light",
+                content: "light",
+                click: () => {
+                    console.log("light button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "dark",
+                content: "dark",
+                click: () => {
+                    console.log("dark button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                type: "link",
+                content: "link",
+                click: () => {
+                    console.log("link button clicked!");
+                }
+            })
+        );
+    })();
+
+    (function () {
+        htmlts.createById("outline").append(
+            htmlts.button.create({
+                type: "default",
+                content: "default",
+                click: () => {
+                    console.log("default button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "primary",
+                content: "primary",
+                click: () => {
+                    console.log("primary button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "secondary",
+                content: "secondary",
+                click: () => {
+                    console.log("secondary button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "danger",
+                content: "danger",
+                click: () => {
+                    console.log("danger button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "warning",
+                content: "warning",
+                click: () => {
+                    console.log("warning button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "info",
+                content: "info",
+                click: () => {
+                    console.log("info button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "light",
+                content: "light",
+                click: () => {
+                    console.log("light button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "dark",
+                content: "dark",
+                click: () => {
+                    console.log("dark button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        ).append(
+            htmlts.button.create({
+                type: "link",
+                content: "link",
+                click: () => {
+                    console.log("link button clicked!");
+                }
+            }, htmltsBootstrap4.button.outline)
+        );
+    })();
+
+    (function () {
+        htmlts.createById("size").append(
+            htmlts.button.create({
+                size: "xs",
+                content: "xs",
+                click: () => {
+                    console.log("xs button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                size: "s",
+                content: "s",
+                click: () => {
+                    console.log("s button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                size: "m",
+                content: "m",
+                click: () => {
+                    console.log("m button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                size: "l",
+                content: "l",
+                click: () => {
+                    console.log("l button clicked!");
+                }
+            })
+        ).append(
+            htmlts.button.create({
+                size: "xl",
+                content: "xl",
+                click: () => {
+                    console.log("xl button clicked!");
+                }
+            })
+        );
+    })();
+
+</script>

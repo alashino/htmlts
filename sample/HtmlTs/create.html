@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+    <script src="../../dest/htmlts.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+<script>
+    (function () {
+        htmlts.createById("root").append(
+            htmlts.create("h1", "hello, world!")
+        ).append(
+            htmlts.create("div", {
+                content: htmlts.create("p", "説明を開始します！")
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "How to Use?"),
+                    htmlts.create("sectoin", {
+                        content: [
+                            htmlts.create("p", "あいうえお。"),
+                            htmlts.create("code", "htmlts.createById('some_id');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "attr"),
+                    htmlts.create("sectoin", {
+                       content: [
+                            htmlts.create("span", {
+                                attr: {
+                                    "title": "タイトル属性です"
+                                },
+                                content: "タイトル属性がついてます"
+                            }).setAttr("test", "hoge"),
+                            htmlts.create("p", "設定する時"),
+                            htmlts.create("code", "htmlts.attr('some_key', 'some value');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.attr({'some_key', 'some value'});"),
+                            htmlts.create("p", "取得する時はjQueryと違うので注意してください。"),
+                            htmlts.create("code", "htmlts.getAttr('some_key');"),
+                            htmlts.create("p", "これは返り値の型を一意にするためです。"),
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "css"),
+                    htmlts.create("sectoin", {
+                       content: [
+                            htmlts.create("span", {
+                                css: {
+                                    "  border  ": " solid 1px red ",
+                                    " font-weight ": "  bold",
+                                },
+                                content: "タイトル属性がついてます"
+                            }).setCss("padding", "1rem").setCss("font-weight", 100),
+                            htmlts.create("code", "htmlts.createById('some_id');"),
+                            htmlts.create("p", "または"),
+                            htmlts.create("code", "htmlts.create('${TagName}', options?);")
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "addClass"),
+                    htmlts.create("section", {
+                        content: [
+                            htmlts.create("p", {
+                                class: "hoge  moge",
+                                content: "classを足したり引いたり。"
+                            }).addClass("hoge fuga fish cat dog").removeClass("fuga fish")
+                        ]
+                    })
+                ]
+            })
+        ).append(
+            htmlts.create("section", {
+                content: [
+                    htmlts.create("h2", "click"),
+                    htmlts.create("sectoin", {
+                        content: [
+                            htmlts.create("a", {
+                                attr: {
+                                    "href": "javascript:void(0)"
+                                },
+                                content: "click me",
+                                click: (element) => {
+                                    console.log("aがclickされたよ！");
+                                    console.log(element);
+                                }
+                            })
+                        ]
+                    }).click()
+                ],
+                click: (element) => {
+                    console.log("sectionがclickされたよ！");
+                    console.log(element);
+                }
+            })
+        ).prepend(
+
+        );
+    })();
+</script>
