@@ -68,12 +68,6 @@ class HtmlTs {
     //
     // text
     //
-    /**
-     * @deprecated setText
-     */
-    text(text: string | number): HtmlTs {
-        return this.setText(text);
-    }
 
     setText(text: string | number): HtmlTs {
         this.htmlElement.textContent = `${text}`;
@@ -165,19 +159,19 @@ class HtmlTs {
     // CSS系
     //
 
-    css(args1: { [key: string]: string | number } | string, args2?: string | number): HtmlTs {
+    setCss(args1: { [key: string]: string | number } | string, args2?: string | number): HtmlTs {
         if (typeof args1 === "string") {
-            this.setCss(args1, args2);
+            this._setCss(args1, args2);
         } else {
             for (const key in args1) {
                 if (!args1.hasOwnProperty(key)) continue;
-                this.setCss(key, args1[key]);
+                this._setCss(key, args1[key]);
             }
         }
         return this;
     }
 
-    private setCss(key: string, value?: string | number): void {
+    private _setCss(key: string, value?: string | number): void {
         const css: { [key: string]: string } = this.getCurrentCss();
         css[key] = (value === undefined) ? "" : `${value}`;
         let styleString = "";

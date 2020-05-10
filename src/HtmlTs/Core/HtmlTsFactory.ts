@@ -50,7 +50,7 @@ class HtmlTsFactory {
             // HtmlTsOptions の時
             if (options.class !== undefined) htmlTs.addClass(options.class);
             if (options.attr !== undefined) htmlTs.setAttr(options.attr);
-            if (options.css !== undefined) htmlTs.css(options.css);
+            if (options.css !== undefined) htmlTs.setCss(options.css);
             if (options.content !== undefined) this.setContents(htmlTs, options.content);
             if (options.click !== undefined) htmlTs.click(options.click);
         }

@@ -190,12 +190,6 @@ class HtmlTs {
     //
     // text
     //
-    /**
-     * @deprecated setText
-     */
-    text(text) {
-        return this.setText(text);
-    }
     setText(text) {
         this.htmlElement.textContent = `${text}`;
         return this;
@@ -285,20 +279,20 @@ class HtmlTs {
     //
     // CSS系
     //
-    css(args1, args2) {
+    setCss(args1, args2) {
         if (typeof args1 === "string") {
-            this.setCss(args1, args2);
+            this._setCss(args1, args2);
         }
         else {
             for (const key in args1) {
                 if (!args1.hasOwnProperty(key))
                     continue;
-                this.setCss(key, args1[key]);
+                this._setCss(key, args1[key]);
             }
         }
         return this;
     }
-    setCss(key, value) {
+    _setCss(key, value) {
         const css = this.getCurrentCss();
         css[key] = (value === undefined) ? "" : `${value}`;
         let styleString = "";
@@ -554,7 +548,7 @@ class HtmlTsFactory {
             if (options.attr !== undefined)
                 htmlTs.setAttr(options.attr);
             if (options.css !== undefined)
-                htmlTs.css(options.css);
+                htmlTs.setCss(options.css);
             if (options.content !== undefined)
                 this.setContents(htmlTs, options.content);
             if (options.click !== undefined)
@@ -2353,12 +2347,18 @@ exports.default = HtmlTsTableFactory;
 Object.defineProperty(exports, "__esModule", { value: true });
 const HtmlTsValidateArray = {
     isNotNull: (value) => {
+        if (value === undefined)
+            return false;
         return value.length > 0;
     },
     minSelect: (value, minSelect) => {
+        if (value === undefined || minSelect === undefined)
+            return false;
         return value.length >= minSelect;
     },
     maxSelect: (value, maxSelect) => {
+        if (value === undefined || maxSelect === undefined)
+            return false;
         return value.length <= maxSelect;
     },
 };
@@ -2426,6 +2426,7 @@ const HtmlTsValidateText = {
     /**
      * 整数かどうか
      * 先頭が0は許さない
+     * 先頭が+は許さない
      */
     isInteger: (value) => {
         if (!HtmlTsValidateText.isNotNull(value))

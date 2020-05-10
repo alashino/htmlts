@@ -42,14 +42,14 @@ class BootStrap4InputDecoratorChoice extends AbstractBootStrap4InputDecorator<Ht
     }
 
     protected validationSuccessThenInput(htmlTsInput: AbstractHtmlTsInputSingleValueChoice<any>): void {
-        htmlTsInput.validation.css("display", "");
+        htmlTsInput.validation.setCss("display", "");
         htmlTsInput.choice.forEach((choice) => {
            choice.htmlInput.removeClass(["is-invalid"]).addClass("is-valid");
         });
     }
 
     protected validationErrorThenInput(htmlTsInput: AbstractHtmlTsInputSingleValueChoice<any>): void {
-        htmlTsInput.validation.css("display", "block");
+        htmlTsInput.validation.setCss("display", "block");
         htmlTsInput.choice.forEach((choice) => {
             choice.htmlInput.removeClass(["is-valid"]).addClass("is-invalid");
         });
