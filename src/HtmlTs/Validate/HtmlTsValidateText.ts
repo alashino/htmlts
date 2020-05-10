@@ -52,6 +52,7 @@ const HtmlTsValidateText = {
     /**
      * 整数かどうか
      * 先頭が0は許さない
+     * 先頭が+は許さない
      */
     isInteger: (value: string): boolean => {
         if (!HtmlTsValidateText.isNotNull(value)) return true;

@@ -58,19 +58,15 @@ touch tsconfig.json
 ```
 
 ## テストを実行するための追記
-
-avaを使います。
-package.jsonに追記。
-※つかおうと思ってたけどなんかうまくいかないので放置してる。
-
+```bash
+npm install ts-node mocha istanbul remap-istanbul postinstall-build chai typemoq @types/{mocha,chai} --save-dev
+npm link typescript
+```
+package.json
 ```json
-    "ava": {
-        "compileEnhancements": false,
-        "extensions": [
-            "ts"
-        ],
-        "require": [
-            "ts-node/register"
-        ]
-    }
+{
+ "scripts": {
+    "test": "./node_modules/.bin/mocha -r ts-node/register ./test/**/*.ts"
+ }
+}
 ```
